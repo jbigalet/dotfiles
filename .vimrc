@@ -49,3 +49,22 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 ca w!! w !sudo tee % >/dev/null
 
 :map <C-b> :ConqueTerm bash<CR>
+
+:map <C-x> :bd<CR>
+:map <C-X> :bp<bar>sp<bar>bn<bar>bd<CR>
+:map <tab> :bn<CR>
+:map <S-tab> :bp<CR>
+
+:set nopaste
+
+:imap jj <esc>
+
+:nmap K 0i//<esc>
+:vmap K 0<C-v>I//<esc>
+
+:map <C-k> :s/\/\///g<CR><esc>
+
+vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
+nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
+map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
+map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
