@@ -53,6 +53,8 @@ ca w!! w !sudo tee % >/dev/null
 
 map <C-b> :ConqueTerm bash<CR>
 
+" map <C-d> <C-w>q
+
 map <C-S-x> :bp<bar>sp<bar>bn<bar>bd<CR>
 map <C-x> :bd<CR>
 map <tab> :bn<CR>
@@ -71,3 +73,13 @@ vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt
 nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
 map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
 map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
+
+noremap m l
+noremap l k
+noremap k j
+noremap j h
+
+nnoremap <C-j> <C-w><C-h>
+nnoremap <C-k> <C-w><C-j>
+nnoremap <C-l> <C-w><C-k>
+nnoremap <C-m> <C-w><C-l>
