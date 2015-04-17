@@ -5,14 +5,16 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'JuliaLang/julia-vim'
+Plugin 'a.vim'
+" Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
 set noswapfile
 
 set expandtab
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 
 syn on
 
@@ -45,7 +47,12 @@ set incsearch
 
 let g:sparkupNextMapping = '<c-x>'
 
+nnoremap <Leader>p :CtrlPBuffer<CR>
+nnoremap <Leader>o :A<CR>
+nnoremap <Leader>O :AV<CR>
+
 map <C-n> :NERDTreeToggle<CR>
+
 map <Leader>s :w <Enter>
 
 map <Leader>v :sp ~/.vimrc<CR>
@@ -93,3 +100,30 @@ nnoremap <C-m> <C-w><C-l>
 
 " j <=> <A-j>, in 7 bit mode terminal. Reminder: to print j, press <C-v> <A-j>
 nnoremap j :!julia %<CR>
+nnoremap k :!make client<CR>
+nnoremap l :!make client2<CR>
+
+" C++ autoinsert header
+function! s:insert_gates()
+  let gatename = substitute(toupper(expand("%:r")), "\\.", "_", "g")
+  let classname = substitute(expand("%:r"), '^.\|_\zs\a', '\u&', 'g')
+  execute "normal! i#ifndef DEF_" . gatename
+  execute "normal! o#define DEF_" . gatename . " "
+  execute "normal! o\<CR>class " . classname . " {"
+  execute "normal! opublic:"
+  execute "normal! o" . classname . "();"
+  execute "normal! o~" . classname . "();"
+  execute "normal! o};"
+  execute "normal! Go\<CR>#endif /* DEF_" . gatename . " */"
+endfunction
+autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
+
+function! s:insert_implementation()
+  let classname = substitute(expand("%:r"), '^.\|_\zs\a', '\u&', 'g')
+  execute "normal! i#include \"" . expand("%:r") . ".h\""
+  execute "normal! o\<CR>" . classname . "::" . classname . "() {"
+  execute "normal! o\<CR>}"
+  execute "normal! o\<CR>" . classname . "::~" . classname . "() {"
+  execute "normal! o\<CR>}"
+endfunction
+autocmd BufNewFile *.{c,cpp} call <SID>insert_implementation()

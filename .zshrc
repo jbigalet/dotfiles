@@ -1,7 +1,7 @@
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored
-zstyle :compinstall filename '/home/jbigalet/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -28,6 +28,8 @@ alias preprod="ssh root@94.23.17.135"
 alias mainserv="ssh root@ns3269944.ovh.net"
 alias bigdata="ssh devcitae@192.168.96.56"
 
+alias eggshot="cd /c/Documents\ and\ Settings/Barbie/Documents/eggshot"
+
 alias czsh="vim ~/.zshrc"
 alias cvim="vim ~/.vimrc"
 alias ci3="vim ~/.i3/config"
@@ -42,6 +44,16 @@ alias pacupg="sudo pacman -Syu"
 alias tarx="tar -zxvf"
 alias tarc="tar -zcvf"
 
+alias gr="grep -nr"
+alias ta="tmux attach -t"
+
+alias gs="git status"
+alias ga="git add"
+alias gau="git add -u"
+alias gc="git commit -m"
+alias gl="git log"
+alias gd="git diff"
+alias gpo="git push origin"
 
 autoload -U colors && colors
 PS1="%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m %{$fg_bold[yellow]%}%~ %{$reset_color%}%% "
