@@ -6,6 +6,9 @@ call vundle#begin()
 
 Plugin 'JuliaLang/julia-vim'
 Plugin 'a.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
@@ -13,8 +16,8 @@ call vundle#end()
 set noswapfile
 
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 
 syn on
 
@@ -47,7 +50,18 @@ set incsearch
 
 let g:sparkupNextMapping = '<c-x>'
 
+" broken ?
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '\v[\/]\.(git|hg|svn|uploads)$',
+"  \ 'file': '\v\.(exe|so|dll|jpg|png|jpeg|bmp|pdf)$',
+"  \ }
+
+"ctrlp: ignore files matched by .gitignore if any
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 nnoremap <Leader>p :CtrlPBuffer<CR>
+
 nnoremap <Leader>o :A<CR>
 nnoremap <Leader>O :AV<CR>
 
@@ -102,6 +116,8 @@ nnoremap <C-m> <C-w><C-l>
 nnoremap j :!julia %<CR>
 nnoremap k :!make client<CR>
 nnoremap l :!make client2<CR>
+
+nnoremap <Leader>q :set paste<CR>a<S-Ins><ESC>:set nopaste<CR>
 
 " C++ autoinsert header
 function! s:insert_gates()
