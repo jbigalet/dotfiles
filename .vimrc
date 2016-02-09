@@ -6,6 +6,8 @@ call vundle#begin()
 
 Plugin 'JuliaLang/julia-vim'
 Plugin 'a.vim'
+Plugin 'jbigalet/vim-less'
+Plugin 'elzr/vim-json'
 " Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
@@ -13,8 +15,8 @@ call vundle#end()
 set noswapfile
 
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 
 syn on
 
@@ -71,6 +73,7 @@ map <C-b> :ConqueTerm bash<CR>
 
 map <C-S-x> :bp<bar>sp<bar>bn<bar>bd<CR>
 map <C-x> :bd<CR>
+nmap <C-c> :bp\|bd #<CR>
 map <tab> :bn<CR>
 map <S-tab> :bp<CR>
 
@@ -97,6 +100,11 @@ nnoremap <C-j> <C-w><C-h>
 nnoremap <C-k> <C-w><C-j>
 nnoremap <C-l> <C-w><C-k>
 nnoremap <C-m> <C-w><C-l>
+
+nnoremap <Leader><Left> <C-w><S-h>
+nnoremap <Leader><Down> <C-w><S-j>
+nnoremap <Leader><Up> <C-w><S-k>
+nnoremap <Leader><Right> <C-w><S-l>
 
 " j <=> <A-j>, in 7 bit mode terminal. Reminder: to print j, press <C-v> <A-j>
 nnoremap j :!julia %<CR>
