@@ -22,7 +22,6 @@ export EDITOR=vim
 
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
-alias less="vimpager"
 
 alias preprod="ssh root@94.23.17.135"
 alias mainserv="ssh root@ns3269944.ovh.net"
@@ -54,6 +53,11 @@ alias gc="git commit -m"
 alias gl="git log"
 alias gd="git diff"
 alias gpo="git push origin"
+
+alias ping="/usr/local/share/./ping"
+
+alias fr="setxkbmap fr"
+alias nocaps="setxkbmap -option caps:escape"
 
 autoload -U colors && colors
 PS1="%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m %{$fg_bold[yellow]%}%~ %{$reset_color%}%% "
