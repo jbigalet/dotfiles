@@ -71,14 +71,21 @@ if [[ ${$(hostname)%%.*} == "ns3269944" ]] then
   alias dev='cd /home/theodo/crysalide/projects/devtests'
   alias inte='cd /home/theodo/crysalide/projects/devinte'
   alias cro='cd /home/theodo/crysalide/projects/croixrougefrancaise'
-fi
 
+  . ~/.local/bin/z/z.sh
 
-if [[ ${$(hostname)%%.*} == "ns3269944" ]] || [[ ${$(hostname)%%.*} == "jbigalet-arch" ]] then
   function powerline_precmd() {
       PS1="$(/home/jbigalet/powerline-shell/powerline-shell.py $? --shell zsh 2> /dev/null)"
   }
+fi
 
+if [[ ${$(hostname)%%.*} == "jbigalet-arch" ]] then
+  function powerline_precmd() {
+    PS1="$(python2.7 ~/Documents/powerline-shell/powerline-shell.py $? --shell zsh 2> /dev/null)"
+  }
+fi
+
+if [[ ${$(hostname)%%.*} == "ns3269944" ]] || [[ ${$(hostname)%%.*} == "jbigalet-arch" ]] then
   function install_powerline_precmd() {
     for s in "${precmd_functions[@]}"; do
       if [ "$s" = "powerline_precmd" ]; then
@@ -91,8 +98,6 @@ if [[ ${$(hostname)%%.*} == "ns3269944" ]] || [[ ${$(hostname)%%.*} == "jbigalet
   if [ "$TERM" != "linux" ]; then
       install_powerline_precmd
   fi
-
-  . ~/.local/bin/z/z.sh
 fi
 
 if [[ ${$(hostname)%%.*} == "ns204990" ]] then
@@ -143,7 +148,6 @@ function exportimages() {
     mkdir -p "~/images/$f";
     pdfimages -j -p "$f" "~/images/$f/page_";
   done
-}
 }
 
 # Add private keys to ssh-agent when first trying to ssh something
