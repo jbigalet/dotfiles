@@ -9,6 +9,8 @@ Plugin 'a.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 " Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
@@ -18,6 +20,7 @@ set noswapfile
 set expandtab
 set tabstop=2
 set shiftwidth=2
+set scrolloff=5
 
 syn on
 
@@ -60,6 +63,7 @@ let g:sparkupNextMapping = '<c-x>'
 "ctrlp: ignore files matched by .gitignore if any
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
+nnoremap <Leader>P :let ctrlp_user_command = []<CR>:CtrlPClearCache<CR>:CtrlP<CR>:let ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']<CR>:CtrlPClearCache<CR>
 nnoremap <Leader>p :CtrlPBuffer<CR>
 
 nnoremap <Leader>o :A<CR>
@@ -118,6 +122,10 @@ nnoremap k :!make client<CR>
 nnoremap l :!make client2<CR>
 
 nnoremap <Leader>q :set paste<CR>a<S-Ins><ESC>:set nopaste<CR>
+
+nnoremap <expr> zT 'zt' . winheight(0)/4 . '<c-y>'
+nnoremap <expr> ZZ 'zt' . winheight(0)/4 . '<c-y>'
+nnoremap <expr> zB 'zb' . winheight(0)/4 . '<c-e>'
 
 " C++ autoinsert header
 function! s:insert_gates()
