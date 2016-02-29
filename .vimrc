@@ -3,12 +3,12 @@ filetype off
 
 " download Vundle if it not found (http://erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/)
 let vundle_fresh_install=0
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme) 
   echo "Installing Vundle.."
   echo ""
   silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/vundle
+  silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
   let vundle_fresh_install=1
 endif
 
@@ -301,3 +301,5 @@ let g:syntastic_python_flake8_exec = 'flake8-python2'
 command! PythonBreakImports g/^import/s/, */\rimport /g 
 
 vnoremap . :normal .<CR>
+
+set backspace=indent,eol,start
