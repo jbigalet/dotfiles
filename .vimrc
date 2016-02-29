@@ -5,11 +5,11 @@ filetype off
 let vundle_fresh_install=0
 let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme) 
-	echo "Installing Vundle.."
-	echo ""
-	silent !mkdir -p ~/.vim/bundle
-	silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/vundle
-	let vundle_fresh_install=1
+  echo "Installing Vundle.."
+  echo ""
+  silent !mkdir -p ~/.vim/bundle
+  silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/vundle
+  let vundle_fresh_install=1
 endif
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -33,6 +33,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mhinz/vim-startify'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'hynek/vim-python-pep8-indent'
 
 call vundle#end()
 
@@ -132,6 +133,10 @@ let g:ctrlp_reuse_window = 'startify'
 
 nnoremap <Leader>p :CtrlPBuffer<CR>
 
+nnoremap <expr> ZZ 'zz' . winheight(0)/4 . '<C-e>'
+nnoremap <expr> ZT 'zz' . winheight(0)/4 . '<C-e>'
+nnoremap <expr> ZB 'zz' . winheight(0)/4 . '<C-y>'
+
 nnoremap <Leader>o :A<CR>
 nnoremap <Leader>O :AV<CR>
 
@@ -140,6 +145,7 @@ map <C-n> :NERDTreeToggle<CR>
 map <Leader>s :w <Enter>
 
 map <Leader>v :sp ~/.vimrc<CR>
+map <Leader>V :vs ~/.vimrc<CR>
 
 augroup GroupVimrc
   autocmd!
@@ -197,6 +203,9 @@ nnoremap <Leader><Right> <C-w><S-l>
 autocmd FileType julia nnoremap j :!julia %<CR>
 autocmd FileType python nnoremap j :!python2 %<CR>
 
+autocmd BufRead * set colorcolumn=
+autocmd BufRead *.py set colorcolumn=80
+
 nnoremap k :!make client<CR>
 nnoremap l :!make client2<CR>
 
@@ -228,14 +237,14 @@ endfunction
 autocmd BufNewFile *.{c,cpp} call <SID>insert_implementation()
 
 function! OmniPopup(action)
-    if pumvisible()
-        if a:action == 'j'
-            return "\<C-N>"
-        elseif a:action == 'k'
-            return "\<C-P>"
-        endif
+  if pumvisible()
+    if a:action == 'j'
+      return "\<C-N>"
+    elseif a:action == 'k'
+      return "\<C-P>"
     endif
-    return a:action
+  endif
+  return a:action
 endfunction
 
 inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
@@ -254,3 +263,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_python_exec = '/usr/bin/python2'
+let g:syntastic_python_checkers = ['flake8', 'python']
+let g:syntastic_python_flake8_exec = 'flake8-python2'
+
+command! PythonBreakImports g/^import/s/, */\rimport /g 
