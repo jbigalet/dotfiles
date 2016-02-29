@@ -37,6 +37,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mhinz/vim-startify'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'scrooloose/nerdtree'
 
 if v:version > 703 || v:version == 703 && has("patch598")
   Plugin 'Valloric/YouCompleteMe'
