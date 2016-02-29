@@ -1,0 +1,14 @@
+*
+!.gitignore
+
+!.vimrc
+!.vim
+
+!.bashrc
+!.zshrc
+
+!.i3
+!.urxvt
+!.Xdefault
+!.xinitrc
+!.xsession
