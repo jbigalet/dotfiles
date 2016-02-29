@@ -55,6 +55,9 @@ alias gl="git log"
 alias gd="git diff"
 alias gpo="git push origin"
 
+alias fr="setxkbmap fr"
+alias nocaps="setxkbmap -option caps:escape"
+
 autoload -U colors && colors
 PS1="%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m %{$fg_bold[yellow]%}%~ %{$reset_color%}%% "
 

@@ -1,0 +1,5 @@
+[core]
+	autocrlf = input
+[user]
+	email = joran.bigalet@gmail.com
+	name = Joran Bigalet
