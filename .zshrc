@@ -1,4 +1,21 @@
-# The following lines were added by compinstall
+##
+## Executes commands at the start of an interactive session.
+##
+## Authors:
+##   Sorin Ionescu <sorin.ionescu@gmail.com>
+##
+#
+## Source Prezto.
+#if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+#  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+#fi
+#
+## Customize to your needs...
+#
+#
+#
+#
+## The following lines were added by compinstall
 
 zstyle ':completion:*' completer _complete _ignored
 zstyle :compinstall filename '~/.zshrc'
@@ -23,9 +40,13 @@ export EDITOR=vim
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 
+alias how="how2"
+
 alias preprod="ssh root@94.23.17.135"
 alias mainserv="ssh root@ns3269944.ovh.net"
 alias bigdata="ssh devcitae@192.168.96.56"
+alias cspsprod="ssh jbigalet@37.59.248.166 -p 22222"
+alias barbie="ssh barbie@91.121.80.76"
 
 alias eggshot="cd /c/Documents\ and\ Settings/Barbie/Documents/eggshot"
 
@@ -50,7 +71,10 @@ if [[ ${$(hostname)%%.*} == "ns3269944" ]] then
   alias dev='cd /home/theodo/crysalide/projects/devtests'
   alias inte='cd /home/theodo/crysalide/projects/devinte'
   alias cro='cd /home/theodo/crysalide/projects/croixrougefrancaise'
+fi
 
+
+if [[ ${$(hostname)%%.*} == "ns3269944" ]] || [[ ${$(hostname)%%.*} == "jbigalet-arch" ]] then
   function powerline_precmd() {
       PS1="$(/home/jbigalet/powerline-shell/powerline-shell.py $? --shell zsh 2> /dev/null)"
   }
@@ -105,11 +129,22 @@ alias ping="/usr/local/share/./ping"
 
 alias fr="setxkbmap fr"
 alias nocaps="setxkbmap -option caps:escape"
+alias hour="sudo ntpd -qg"
+
+alias lock="i3lock -c 000000 -n"
 
 autoload -U colors && colors
 PS1="%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m %{$fg_bold[yellow]%}%~ %{$reset_color%}%% "
 
 alias tat="tmux attach -t"
+
+function exportimages() {
+  for f in $(ls -R | find . -name '*.pdf' ); do
+    mkdir -p "~/images/$f";
+    pdfimages -j -p "$f" "~/images/$f/page_";
+  done
+}
+}
 
 # Add private keys to ssh-agent when first trying to ssh something
 #ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'#

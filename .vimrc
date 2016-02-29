@@ -299,3 +299,5 @@ let g:syntastic_python_checkers = ['flake8', 'python']
 let g:syntastic_python_flake8_exec = 'flake8-python2'
 
 command! PythonBreakImports g/^import/s/, */\rimport /g 
+
+vnoremap . :normal .<CR>
