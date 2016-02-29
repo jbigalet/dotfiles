@@ -146,6 +146,15 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# zenbook media keys
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -5%
+bindcode mod1+49 exec sudo /usr/local/share/screen_backlight 100
+bindcode $mod+49 exec sudo /usr/local/share/screen_backlight -100
+bindsym XF86KbdBrightnessUp exec sudo /usr/local/share/keyboard_backlight 1
+bindsym XF86KbdBrightnessDown exec sudo /usr/local/share/keyboard_backlight -1
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
