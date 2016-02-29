@@ -58,6 +58,8 @@ set tabstop=2
 set shiftwidth=2
 set smarttab
 
+set linebreak "wrap on words, not on character
+
 syn on
 
 set wildmenu
