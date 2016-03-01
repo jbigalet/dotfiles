@@ -303,3 +303,6 @@ command! PythonBreakImports g/^import/s/, */\rimport /g
 vnoremap . :normal .<CR>
 
 set backspace=indent,eol,start
+
+set conceallevel=0
+set hidden
