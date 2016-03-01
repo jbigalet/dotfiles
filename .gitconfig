@@ -1,0 +1,8 @@
+[user]
+	name = Joran Bigalet
+	email = joran.bigalet@gmail.com
+[color]
+	ui = true
+	branch = always
+	diff = always
+	status = true

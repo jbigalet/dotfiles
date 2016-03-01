@@ -1,6 +1,8 @@
 *
 !.gitignore
 
+!.gitconfig
+
 !.vimrc
 !.vim
 .vim/bundle/*
