@@ -6,3 +6,5 @@
 	branch = always
 	diff = always
 	status = true
+[core]
+	autocrlf = input
