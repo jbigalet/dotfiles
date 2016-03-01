@@ -37,8 +37,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mhinz/vim-startify'
 Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'scrooloose/nerdtree'
+" Plugin 'scrooloose/nerdtree'
 Plugin 'jwalton512/vim-blade'
+Plugin 'terryma/vim-multiple-cursors'
 
 if (v:version > 703 || v:version == 703 && has(patch598)) && has('python')
   Plugin 'Valloric/YouCompleteMe'
@@ -157,14 +158,22 @@ nnoremap <expr> ZB 'zz' . winheight(0)/4 . '<C-y>'
 nnoremap <Leader>o :A<CR>
 nnoremap <Leader>O :AV<CR>
 
-map <C-n> :NERDTreeToggle<CR>
+" map <C-n> :NERDTreeToggle<CR>
 
 map <Leader>s :w <Enter>
 
 map <Leader>h :t.\|s/[^\|]/-/g\|s/-\|-/ \| /g<CR>
 
-map <Leader>v :sp ~/.vimrc<CR>
-map <Leader>V :vs ~/.vimrc<CR>
+function! OpenThereOrInSplit(file, splittype)
+  if line('$') == 1 && getline(1) == '' && bufname('%') == ''
+    exec 'e' a:file
+  else
+    exec a:splittype a:file
+  endif
+endfunction
+
+nnoremap <Leader>v :call OpenThereOrInSplit("~/.vimrc", 'sp')<CR>
+nnoremap <Leader>V :call OpenThereOrInSplit("~/.vimrc", 'vs')<CR>
 
 augroup GroupVimrc
   autocmd!
@@ -207,6 +216,13 @@ noremap m l
 noremap l k
 noremap k j
 noremap j h
+
+let g:unicoder_cancel_normal = 1
+let g:unicoder_cancel_insert = 1
+let g:unicoder_cancel_visual = 1
+let g:unicoder_no_map = 1
+inoremap <C-l> <Esc>:call unicoder#start(1)<CR>
+vnoremap <C-l> <Esc>:call unicoder#selection()<CR>
 
 nnoremap <C-j> <C-w><C-h>
 nnoremap <C-k> <C-w><C-j>
@@ -257,10 +273,6 @@ function! s:insert_implementation()
 endfunction
 autocmd BufNewFile *.{c,cpp} call <SID>insert_implementation()
 
-let g:unicoder_cancel_normal = 1
-let g:unicoder_cancel_insert = 1
-inoremap <C-l> <Esc>:call unicoder#start(1)<CR>
-
 set virtualedit=block "Visual block mode (<c-v>): can move outside of actual text
 
 "Y acts as C and D
@@ -303,3 +315,6 @@ command! PythonBreakImports g/^import/s/, */\rimport /g
 vnoremap . :normal .<CR>
 
 set backspace=indent,eol,start
+
+set conceallevel=0
+set hidden

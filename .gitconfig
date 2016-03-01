@@ -1,5 +1,10 @@
 [user]
+	name = Joran Bigalet
 	email = joran.bigalet@gmail.com
-	name = jbigalet
+[color]
+	ui = true
+	branch = always
+	diff = always
+	status = true
 [core]
 	autocrlf = input
