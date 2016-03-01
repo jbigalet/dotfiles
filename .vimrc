@@ -171,7 +171,7 @@ augroup GroupVimrc
   autocmd BufWritePost .vimrc so ~/.vimrc 
 augroup END
 
-map <C-j> :%!python -m json.tool <Enter>
+nnoremap j :%!python -m json.tool <Enter>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
