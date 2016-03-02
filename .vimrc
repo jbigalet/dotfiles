@@ -40,6 +40,11 @@ Plugin 'hynek/vim-python-pep8-indent'
 " Plugin 'scrooloose/nerdtree'
 Plugin 'jwalton512/vim-blade'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'sjl/gundo.vim'
+Plugin 'dyng/ctrlsf.vim'
+Plugin 'jreybert/vimagit'
+"Plugin 'altercation/vim-colors-solarized'
+Plugin 'mattn/emmet-vim'
 
 if (v:version > 703 || v:version == 703 && has(patch598)) && has('python')
   Plugin 'Valloric/YouCompleteMe'
@@ -82,13 +87,16 @@ colorscheme molokai
 filetype plugin indent on
 
 if !has('gui_running')
-  set ttimeoutlen=10
+  set ttimeoutlen=100
   augroup FastEscape
     autocmd!
-    autocmd InsertEnter * set timeoutlen=0
+    autocmd InsertEnter * set timeoutlen=100
     autocmd InsertLeave * set timeoutlen=1000
   augroup END
 endif
+
+inoremap jk <esc>
+inoremap kj <esc>
 
 " Always show statusline
 set laststatus=2
@@ -318,3 +326,8 @@ set backspace=indent,eol,start
 
 set conceallevel=0
 set hidden
+
+nnoremap <Leader>u :GundoToggle<CR>
+
+let g:user_emmet_leader_key='<C-E>'
+
