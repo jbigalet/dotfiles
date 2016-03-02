@@ -40,6 +40,7 @@ Plugin 'hynek/vim-python-pep8-indent'
 " Plugin 'scrooloose/nerdtree'
 Plugin 'jwalton512/vim-blade'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'StanAngeloff/php.vim'
 
 if (v:version > 703 || v:version == 703 && has(patch598)) && has('python')
   Plugin 'Valloric/YouCompleteMe'
@@ -318,3 +319,10 @@ set backspace=indent,eol,start
 
 set conceallevel=0
 set hidden
+
+autocmd FileType php setlocal commentstring=//\ %s
+
+augroup phpSyntaxOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END
