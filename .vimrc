@@ -141,15 +141,6 @@ let g:SimpylFold_docstring_preview = 1
 autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 
-let g:sparkupNextMapping = '<c-x>'
-
-" broken ?
-"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir':  '\v[\/]\.(git|hg|svn|uploads)$',
-"  \ 'file': '\v\.(exe|so|dll|jpg|png|jpeg|bmp|pdf)$',
-"  \ }
-
 "ctrlp: ignore files matched by .gitignore if any
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -166,8 +157,6 @@ nnoremap <expr> ZB 'zz' . winheight(0)/4 . '<C-y>'
 
 nnoremap <Leader>o :A<CR>
 nnoremap <Leader>O :AV<CR>
-
-" map <C-n> :NERDTreeToggle<CR>
 
 map <Leader>s :w <Enter>
 
@@ -196,8 +185,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 ca w!! w !sudo tee % >/dev/null
 
-map <C-b> :ConqueTerm bash<CR>
-
 " map <C-d> <C-w>q
 
 map <C-S-x> :bp<bar>sp<bar>bn<bar>bd<CR>
@@ -208,13 +195,8 @@ map <S-tab> :bp<CR>
 
 set nopaste
 
-imap jj <esc>
-
 nnoremap S :Commentary<CR>
 vmap S :Commentary<CR>
-" nmap K 0i//<esc>
-" vmap K 0<C-v>I//<esc>
-" map <C-k> :s/\/\///g<CR><esc>
 
 vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
 nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
@@ -329,12 +311,6 @@ set conceallevel=0
 set hidden
 
 autocmd FileType php setlocal commentstring=//\ %s
-
-augroup phpSyntaxOverride
-  autocmd!
-  autocmd FileType php call PhpSyntaxOverride()
-augroup END
-
 
 let g:user_emmet_leader_key='<C-E>'
 
