@@ -57,10 +57,9 @@ alias czsh="vim ~/.zshrc"
 alias cvim="vim ~/.vimrc"
 alias ci3="vim ~/.i3/config"
 alias cxd="vim ~/.Xdefaults"
+alias cxinit="vim ~/.xinitrc"
 
 alias grips="nohup grip > /dev/null 2>&1 &"
-
-alias cxinit="vim ~/.xinitrc"
 
 alias reload="source ~/.zshrc"
 
@@ -131,9 +130,13 @@ alias gl="git log"
 alias gd="git diff"
 alias gdl="git diff HEAD~1"
 alias gdc="git diff --cached"
+alias gdp="git diff @{1}.."
 alias gpo="git push origin"
+alias gpm="git push origin master"
+alias ggo="git pull origin"
+alias ggm="git pull origin master"
 
-alias ping="/usr/local/share/./ping"
+# alias ping="/usr/local/share/./ping"
 
 alias fr="setxkbmap fr"
 alias nocaps="setxkbmap -option caps:escape"

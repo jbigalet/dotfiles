@@ -163,11 +163,11 @@ bar {
 }
 
 
-exec --no-startup-id "devmon --no-gui"
 exec --no-startup-id "pulseaudio --start"
 
-exec --no-startup-id setxkbmap fr
-exec --no-startup-id setxkbmap -option caps:escape
+exec xset r rate 250 50
+exec xset b off
+exec xset -dpms
 
-exec --no-startup-id xset r rate 250 50
-exec --no-startup-id xset b off
+exec setxkbmap fr
+exec setxkbmap -option caps:escape

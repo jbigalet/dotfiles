@@ -41,6 +41,11 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'jwalton512/vim-blade'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'sjl/gundo.vim'
+Plugin 'dyng/ctrlsf.vim'
+Plugin 'jreybert/vimagit'
+"Plugin 'altercation/vim-colors-solarized'
+Plugin 'mattn/emmet-vim'
 
 if (v:version > 703 || v:version == 703 && has(patch598)) && has('python')
   Plugin 'Valloric/YouCompleteMe'
@@ -83,13 +88,16 @@ colorscheme molokai
 filetype plugin indent on
 
 if !has('gui_running')
-  set ttimeoutlen=10
+  set ttimeoutlen=100
   augroup FastEscape
     autocmd!
-    autocmd InsertEnter * set timeoutlen=0
+    autocmd InsertEnter * set timeoutlen=100
     autocmd InsertLeave * set timeoutlen=1000
   augroup END
 endif
+
+inoremap jk <esc>
+inoremap kj <esc>
 
 " Always show statusline
 set laststatus=2
@@ -181,7 +189,7 @@ augroup GroupVimrc
   autocmd BufWritePost .vimrc so ~/.vimrc 
 augroup END
 
-map <C-j> :%!python -m json.tool <Enter>
+nnoremap j :%!python -m json.tool <Enter>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -326,3 +334,7 @@ augroup phpSyntaxOverride
   autocmd!
   autocmd FileType php call PhpSyntaxOverride()
 augroup END
+
+
+let g:user_emmet_leader_key='<C-E>'
+
