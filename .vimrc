@@ -47,7 +47,7 @@ Plugin 'jreybert/vimagit'
 "Plugin 'altercation/vim-colors-solarized'
 Plugin 'mattn/emmet-vim'
 
-if (v:version > 703 || v:version == 703 && has(patch598)) && has('python')
+if (v:version > 703 || v:version == 703 && has('patch598')) && has('python')
   Plugin 'Valloric/YouCompleteMe'
 endif
 
