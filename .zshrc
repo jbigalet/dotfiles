@@ -131,10 +131,10 @@ alias gd="git diff"
 alias gdl="git diff HEAD~1"
 alias gdc="git diff --cached"
 alias gdp="git diff @{1}.."
+alias gp="git push origin master"
 alias gpo="git push origin"
-alias gpm="git push origin master"
+alias gg="git pull origin master"
 alias ggo="git pull origin"
-alias ggm="git pull origin master"
 
 # alias ping="/usr/local/share/./ping"
 
