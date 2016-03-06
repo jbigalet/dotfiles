@@ -5,6 +5,7 @@
 
 !.vimrc
 !.vim
+!.vim/*
 .vim/bundle/*
 
 !.cvimrc
@@ -18,3 +19,6 @@
 !.Xdefault
 !.xinitrc
 !.xsession
+
+!bin
+!bin/*
