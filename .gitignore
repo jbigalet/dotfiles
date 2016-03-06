@@ -7,6 +7,8 @@
 !.vim
 .vim/bundle/*
 
+!.cvimrc
+
 !.bashrc
 !.zshrc
 !.zlogin

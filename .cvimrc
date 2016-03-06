@@ -1,0 +1,22 @@
+let configpath = '/home/jbigalet/.cvimrc'
+set localconfig
+
+set smoothscroll
+
+map W :tabdetach<CR>
+
+set noautofocus " no autofocus on input fields
+
+let barposition="bottom"
+
+let completionengines = ['google', 'wikipedia', 'youtube', 'imdb', 'amazon', 'google-maps', 'google-image', 'urbandictionary']
+let searchalias g = "google"
+let searchalias w = "wikipedia"
+let searchalias y = "google"
+let searchalias i = "imdb"
+let searchalias a = "amazon"
+let searchalias gm = "google-maps"
+let searchalias gi = "google-image"
+let searchalias u = "urbandictionary"
+
+
