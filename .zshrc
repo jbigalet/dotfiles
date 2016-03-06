@@ -38,6 +38,7 @@ bindkey "^R" history-incremental-search-backward
 export EDITOR=vim
 
 alias ls="ls --color=auto"
+alias ll="ls -ahltr --color=auto"
 alias grep="grep --color=auto"
 
 alias how="how2"
@@ -69,12 +70,12 @@ alias pacupg="sudo pacman -Syu"
 alias tarx="tar -zxvf"
 alias tarc="tar -zcvf"
 
+. ~/bin/z/z.sh
+
 if [[ ${$(hostname)%%.*} == "ns3269944" ]] then
   alias dev='cd /home/theodo/crysalide/projects/devtests'
   alias inte='cd /home/theodo/crysalide/projects/devinte'
   alias cro='cd /home/theodo/crysalide/projects/croixrougefrancaise'
-
-  . ~/.local/bin/z/z.sh
 
   function powerline_precmd() {
       PS1="$(/home/jbigalet/powerline-shell/powerline-shell.py $? --shell zsh 2> /dev/null)"
@@ -122,20 +123,35 @@ fi
 
 alias gr="grep -nr"
 
-alias gs="git status"
+
+# Use `hub` as our git wrapper:
+#   http://defunkt.github.com/hub/
+hub_path=$(which hub)
+if (( $+commands[hub] ))
+then
+  alias git=$hub_path
+fi
+
+alias g="git clone"
+alias gs="git status -sb"
+alias gss="git status"
 alias ga="git add"
 alias gau="git add -u"
 alias gc="git commit -m"
 alias gca="git commit --amend"
-alias gl="git log"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gls="git log"
 alias gd="git diff"
+alias gm="git diff --name-only --diff-filter=U"
 alias gdl="git diff HEAD~1"
 alias gdc="git diff --cached"
 alias gdp="git diff @{1}.."
 alias gp="git push origin master"
 alias gpo="git push origin"
-alias gg="git pull origin master"
-alias ggo="git pull origin"
+alias gg="git pull --rebase origin master"
+alias ggo="git pull --rebase origin"
+alias gb="git branch"
+alias gbl="git branch -vv"
 
 # alias ping="/usr/local/share/./ping"
 

@@ -8,3 +8,5 @@
 	status = true
 [core]
 	autocrlf = input
+[fetch]
+	prune = true
