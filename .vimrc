@@ -46,6 +46,7 @@ Plugin 'dyng/ctrlsf.vim'
 Plugin 'jreybert/vimagit'
 "Plugin 'altercation/vim-colors-solarized'
 Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-eunuch'
 
 if (v:version > 703 || v:version == 703 && has('patch598')) && has('python')
   Plugin 'Valloric/YouCompleteMe'
@@ -209,6 +210,7 @@ nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<
 map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
 map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
 
+noremap h m
 noremap m l
 noremap l k
 noremap k j
@@ -351,3 +353,5 @@ command! StripWhitespace %s/ \+$//gc
 " cnoremap <C-k> <Down>
 " cnoremap <C-l> <Up>
 " cnoremap <C-m> <Right>
+
+nnoremap / ms/
