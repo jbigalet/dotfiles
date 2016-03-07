@@ -4,7 +4,7 @@ filetype off
 " download Vundle if it not found (http://erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/)
 let vundle_fresh_install=0
 let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme) 
+if !filereadable(vundle_readme)
   echo "Installing Vundle.."
   echo ""
   silent !mkdir -p ~/.vim/bundle
@@ -65,6 +65,7 @@ set noswapfile
 set expandtab
 set tabstop=2
 set shiftwidth=2
+set softtabstop=2
 set smarttab
 
 set linebreak "wrap on words, not on character
@@ -80,7 +81,7 @@ nmap ga <Plug>(EasyAlign)
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
-" colorscheme desertEx 
+" colorscheme desertEx
 " autocmd BufEnter * colorscheme desertEx
 " autocmd BufEnter *.py colorscheme molokai
 colorscheme molokai
@@ -98,6 +99,8 @@ endif
 
 inoremap jk <esc>
 inoremap kj <esc>
+inoremap kl <esc>
+inoremap lk <esc>
 
 " Always show statusline
 set laststatus=2
@@ -160,7 +163,11 @@ nnoremap <Leader>O :AV<CR>
 
 map <Leader>s :w <Enter>
 
-map <Leader>h :t.\|s/[^\|]/-/g\|s/-\|-/ \| /g<CR>
+function! AddTableHeader()
+  exec ":t.|s/[^|]/-/g|s/-|-/ | /g"
+endfunction
+command! AddTableHeader call AddTableHeader()
+autocmd FileType markdown nnoremap <buffer> <Leader>h :AddTableHeader<CR>
 
 function! OpenThereOrInSplit(file, splittype)
   if line('$') == 1 && getline(1) == '' && bufname('%') == ''
@@ -175,21 +182,20 @@ nnoremap <Leader>V :call OpenThereOrInSplit("~/.vimrc", 'vs')<CR>
 
 augroup GroupVimrc
   autocmd!
-  autocmd BufWritePost .vimrc so ~/.vimrc 
+  autocmd BufWritePost .vimrc so ~/.vimrc
 augroup END
 
-nnoremap j :%!python -m json.tool <Enter>
+command! JsonFormatting %!python -m json.tool
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 ca w!! w !sudo tee % >/dev/null
 
-" map <C-d> <C-w>q
+nnoremap <C-x> :bd<CR>
+nnoremap x :bp\|bd #<CR>
+nnoremap <Leader>x <C-w>q
 
-map <C-S-x> :bp<bar>sp<bar>bn<bar>bd<CR>
-map <C-x> :bd<CR>
-nmap <C-c> :bp\|bd #<CR>
 map <tab> :bn<CR>
 map <S-tab> :bp<CR>
 
@@ -226,16 +232,16 @@ nnoremap <Leader><Up> <C-w><S-k>
 nnoremap <Leader><Right> <C-w><S-l>
 
 " j <=> <A-j>, in 7 bit mode terminal. Reminder: to print j, press <C-v> <A-j>
-autocmd FileType julia nnoremap j :!julia %<CR>
-autocmd FileType python nnoremap j :!python2 %<CR>
+autocmd FileType julia nnoremap <buffer> j :!julia %<CR>
+autocmd FileType python nnoremap <buffer> j :!python2 %<CR>
 
 if v:version >= 703
   autocmd BufRead * set colorcolumn=
   autocmd BufRead *.py set colorcolumn=80
 endif
 
-nnoremap k :!make client<CR>
-nnoremap l :!make client2<CR>
+" nnoremap k :!make client<CR>
+" nnoremap l :!make client2<CR>
 
 set pastetoggle=<F1>
 
@@ -301,7 +307,7 @@ let g:syntastic_python_python_exec = '/usr/bin/python2'
 let g:syntastic_python_checkers = ['flake8', 'python']
 let g:syntastic_python_flake8_exec = 'flake8-python2'
 
-command! PythonBreakImports g/^import/s/, */\rimport /g 
+command! PythonBreakImports g/^import/s/, */\rimport /g
 
 vnoremap . :normal .<CR>
 
@@ -312,5 +318,36 @@ set hidden
 
 autocmd FileType php setlocal commentstring=//\ %s
 
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_mode="i"
 let g:user_emmet_leader_key='<C-E>'
 
+set iskeyword-=_
+set iskeyword+=$,@,%,#
+
+set modeline
+set modelines=10
+
+set tabpagemax=50
+
+autocmd FileType vim setlocal keywordprg=:help
+
+set list listchars=trail:.,tab:>.
+highlight SpecialKey ctermfg=DarkGray ctermbg=Black
+
+set whichwrap+=h,l
+
+set ignorecase
+set smartcase
+
+set visualbell
+
+set nojoinspaces
+
+command! StripWhitespace %s/ \+$//gc
+
+" cnoremap <C-j> <Left>
+" cnoremap <C-k> <Down>
+" cnoremap <C-l> <Up>
+" cnoremap <C-m> <Right>
