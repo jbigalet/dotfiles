@@ -3,7 +3,12 @@ set localconfig
 
 set smoothscroll
 
+unmap w
+map w :tabattach<Space>1
 map W :tabdetach<CR>
+
+unmap q
+map q B
 
 set noautofocus " no autofocus on input fields
 
@@ -18,5 +23,3 @@ let searchalias a = "amazon"
 let searchalias gm = "google-maps"
 let searchalias gi = "google-image"
 let searchalias u = "urbandictionary"
-
-
