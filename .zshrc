@@ -120,3 +120,9 @@ then
 fi
 
 alias e="vim"
+
+function mkdir_cd() {
+  mkdir -p $1
+  cd $1
+}
+alias cm=mkdir_cd
