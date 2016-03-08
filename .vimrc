@@ -1,65 +1,54 @@
 set nocompatible
-filetype off
 
-" download Vundle if it not found (http://erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/)
-let vundle_fresh_install=0
-let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme)
-  echo "Installing Vundle.."
-  echo ""
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
-  let vundle_fresh_install=1
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'JuliaLang/julia-vim'
-Plugin 'a.vim'
-Plugin 'jbigalet/vim-less'
-Plugin 'elzr/vim-json'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'tpope/vim-markdown'
-Plugin 'joom/latex-unicoder.vim'
-Plugin 'mbbill/desertEx'
-Plugin 'tomasr/molokai'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'tpope/vim-surround'
-Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'mhinz/vim-startify'
-Plugin 'hynek/vim-python-pep8-indent'
-" Plugin 'scrooloose/nerdtree'
-Plugin 'jwalton512/vim-blade'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'sjl/gundo.vim'
-Plugin 'dyng/ctrlsf.vim'
-Plugin 'jreybert/vimagit'
-"Plugin 'altercation/vim-colors-solarized'
-Plugin 'mattn/emmet-vim'
-Plugin 'tpope/vim-eunuch'
+Plug 'VundleVim/Vundle.vim'
+Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
+Plug 'a.vim', { 'for': ['c', 'cpp'] }
+Plug 'jbigalet/vim-less', { 'for': 'less' }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'joom/latex-unicoder.vim'
+Plug 'mbbill/desertEx'
+Plug 'tomasr/molokai'
+Plug 'tmhedberg/SimpylFold'
+Plug 'tpope/vim-surround'
+Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-startify'
+Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
+" Plug 'scrooloose/nerdtree'
+Plug 'jwalton512/vim-blade', { 'for': 'blade' }
+Plug 'terryma/vim-multiple-cursors'
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'sjl/gundo.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'jreybert/vimagit'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'xml'] }
+Plug 'tpope/vim-eunuch'
 
-if (v:version > 703 || v:version == 703 && has('patch598')) && has('python')
-  Plugin 'Valloric/YouCompleteMe'
-endif
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
-call vundle#end()
+"if (v:version > 703 || v:version == 703 && has('patch598')) && has('python')
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+  "Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'for': ['c', 'cpp', 'python'] }
+"endif
 
-" install plugins if vundle just got installed
-if vundle_fresh_install == 1
-  echo "Installing Vundles, please ignore key map error messages"
-  echo ""
-  :PluginInstall
-endif
+call plug#end()
 
 set noswapfile
 
@@ -321,7 +310,7 @@ set hidden
 autocmd FileType php setlocal commentstring=//\ %s
 
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+autocmd FileType html,css,xml EmmetInstall
 let g:user_emmet_mode="i"
 let g:user_emmet_leader_key='<C-E>'
 

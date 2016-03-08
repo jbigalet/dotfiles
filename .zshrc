@@ -175,3 +175,5 @@ function exportimages() {
 
 # Add private keys to ssh-agent when first trying to ssh something
 #ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'#
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

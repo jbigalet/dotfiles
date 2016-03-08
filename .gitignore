@@ -6,7 +6,9 @@
 !.vimrc
 !.vim
 !.vim/*
-.vim/bundle/*
+!.vim/*/*
+.vim/plugged/*
+.vim/autoload/plug.vim
 
 !.cvimrc
 
