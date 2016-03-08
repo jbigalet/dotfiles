@@ -332,8 +332,6 @@ set whichwrap+=h,l
 set ignorecase
 set smartcase
 
-set visualbell
-
 set nojoinspaces
 
 command! StripWhitespace %s/ \+$//gc
