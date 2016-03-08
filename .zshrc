@@ -24,7 +24,7 @@ alias barbie="ssh barbie@91.121.80.76"
 alias czsh="vim ~/.zshrc"
 alias cvim="vim ~/.vimrc"
 alias ci3="vim ~/.i3/config"
-alias cxd="vim ~/.Xdefaults"
+alias cxr="vim ~/.Xresources"
 alias cxinit="vim ~/.xinitrc"
 
 alias grips="nohup grip > /dev/null 2>&1 &"
@@ -119,3 +119,4 @@ then
   alias how="how2"
 fi
 
+alias e="vim"
