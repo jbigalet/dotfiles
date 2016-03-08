@@ -39,6 +39,7 @@ Plug 'jreybert/vimagit'
 "Plug 'altercation/vim-colors-solarized'
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'xml'] }
 Plug 'tpope/vim-eunuch'
+Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
