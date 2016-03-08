@@ -152,6 +152,8 @@ alias gg="git pull --rebase origin master"
 alias ggo="git pull --rebase origin"
 alias gb="git branch"
 alias gbl="git branch -vv"
+alias gt="git stash"
+alias gtp="git stash pop"
 
 # alias ping="/usr/local/share/./ping"
 
