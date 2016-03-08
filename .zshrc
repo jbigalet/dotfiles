@@ -37,7 +37,7 @@ alias pacupg="sudo pacman -Syu"
 alias tarx="tar -zxvf"
 alias tarc="tar -zcvf"
 
-. ~/bin/z/z.sh
+. ~/.bin/z/z.sh
 
 if [[ ${$(hostname)%%.*} == "jbigalet-arch" ]] then
   function powerline_precmd() {
