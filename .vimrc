@@ -8,7 +8,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'VundleVim/Vundle.vim'
-Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
+" Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
 Plug 'a.vim', { 'for': ['c', 'cpp'] }
 Plug 'jbigalet/vim-less', { 'for': 'less' }
 Plug 'elzr/vim-json', { 'for': 'json' }
