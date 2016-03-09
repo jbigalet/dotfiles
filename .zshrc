@@ -37,7 +37,7 @@ alias pacupg="sudo pacman -Syu"
 alias tarx="tar -zxvf"
 alias tarc="tar -zcvf"
 
-. ~/.bin/z/z.sh
+. ~/.bin/packages/z/z.sh
 
 if [[ ${$(hostname)%%.*} == "jbigalet-arch" ]] then
   function powerline_precmd() {
@@ -126,3 +126,5 @@ function mkdir_cd() {
   cd $1
 }
 alias cm=mkdir_cd
+
+source ~/.bin/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

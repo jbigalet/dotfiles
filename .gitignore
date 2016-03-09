@@ -9,6 +9,7 @@
 !.vim/*/*
 .vim/plugged/*
 .vim/autoload/plug.vim
+.vim/.netrwhist
 
 !.cvimrc
 
@@ -25,3 +26,4 @@
 !.bin
 !.bin/*
 !.bin/*/*
+!.bin/*/*/*
