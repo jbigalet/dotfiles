@@ -161,8 +161,10 @@ command! AddTableHeader call AddTableHeader()
 autocmd FileType markdown nnoremap <buffer> <Leader>h :AddTableHeader<CR>
 
 function! OpenThereOrInSplit(file, splittype)
-  if line('$') == 1 && getline(1) == '' && bufname('%') == ''
+  if &filetype == 'startify'
     exec 'e' a:file
+  elseif line('$') == 1 && getline(1) == '' && bufname('%') == ''
+    exec 'e' a:file '|bd #'
   else
     exec a:splittype a:file
   endif
@@ -170,6 +172,18 @@ endfunction
 
 nnoremap <Leader>v :call OpenThereOrInSplit("~/.vimrc", 'sp')<CR>
 nnoremap <Leader>V :call OpenThereOrInSplit("~/.vimrc", 'vs')<CR>
+
+function! ExecuteThisOrThatIfNoBuffer(this, that)
+  if (&filetype == 'startify' || (line('$') == 1 && getline(1) == '' && bufname('%') == '')) && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) <= 1
+    exec a:that
+  else
+    exec a:this
+  endif
+endfunction
+
+nnoremap <C-x> :call ExecuteThisOrThatIfNoBuffer('bd', 'q')<CR>
+nnoremap x :bp\|bd #<CR>
+nnoremap <Leader>x <C-w>q
 
 augroup GroupVimrc
   autocmd!
@@ -182,10 +196,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 ca w!! w !sudo tee % >/dev/null
-
-nnoremap <C-x> :bd<CR>
-nnoremap x :bp\|bd #<CR>
-nnoremap <Leader>x <C-w>q
 
 map <tab> :bn<CR>
 map <S-tab> :bp<CR>
