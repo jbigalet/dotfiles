@@ -353,3 +353,18 @@ command! StripWhitespace %s/ \+$//gc
 " cnoremap <C-m> <Right>
 
 nnoremap / ms/
+
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+nnoremap <leader>q  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+
+vnoremap <  <gv
+vnoremap >  >gv
+
+autocmd WinEnter    * set cursorline
+autocmd WinLeave    * set nocursorline
+autocmd InsertEnter * set nocursorline
+autocmd InsertLeave * set cursorline
