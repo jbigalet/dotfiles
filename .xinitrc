@@ -11,6 +11,9 @@
 [[ -f ~/.Xresources.$HOST ]] && xrdb -merge -I$HOME ~/.Xresources.$HOST
 
 
+[ -x $HOME/.screenlayout/default.sh ] && $HOME/.screenlayout/default.sh
+
+
 pulseaudio --start
 
 xset r rate 250 50
