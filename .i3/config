@@ -160,13 +160,3 @@ bar {
   position top
   status_command i3status -c ~/.i3/i3status.conf
 }
-
-
-exec --no-startup-id "pulseaudio --start"
-
-exec xset r rate 250 50
-exec xset b off
-exec xset -dpms
-
-exec setxkbmap fr
-exec setxkbmap -option caps:escape
