@@ -26,16 +26,22 @@ echo "linking files...."
 for f in ~/dotfiles/*
 do
   base=`basename $f`
-  dest=~/.$base
 
-  if [ -L $dest ];then
-    rm $dest
-  elif [ -e $dest ]; then
-    echo "backuping existing file: $base"
-    mkdir -p $bckdir
-    mv $dest $bckdir/$base
+  if [[ $base != install.sh ]]
+  then
+
+    dest=~/.$base
+
+    if [ -L $dest ];then
+      rm $dest
+    elif [ -e $dest ]; then
+      echo "backuping existing file: $base"
+      mkdir -p $bckdir
+      mv $dest $bckdir/$base
+    fi
+
+    ln -s $f $dest
+
   fi
-
-  ln -s $f $dest
 done
 
