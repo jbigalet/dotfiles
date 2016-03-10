@@ -13,3 +13,5 @@
 [filter "update-local-branch"]
   clean = "sed \"s/= .* # local/= -toreplace- # local/\""
   smudge = "sed \"s/= .* # local/= $(cat /etc/hostname) # local/\""
+[url "https://"]
+	insteadOf = git://
