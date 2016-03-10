@@ -30,3 +30,6 @@
 
 !.screenlayout
 !.screenlayout/*
+
+!.dotfiles-local
+!.dotfiles-local/*
