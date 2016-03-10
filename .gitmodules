@@ -1,10 +1,10 @@
 [submodule ".bin/packages/z"]
 	path = .bin/packages/z
-	url = git://github.com/rupa/z.git
+	url = https://github.com/rupa/z.git
 [submodule ".bin/packages/zsh-syntax-highlighting"]
 	path = .bin/packages/zsh-syntax-highlighting
-	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule ".dotfiles-local"]
 	path = .dotfiles-local
-	url = git://github.com/jbigalet/dotfiles-local.git
+	url = https://github.com/jbigalet/dotfiles-local.git
 	branch = -toreplace- # local branch autoupdated on checkout
