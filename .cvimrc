@@ -14,7 +14,14 @@ set noautofocus " no autofocus on input fields
 
 let barposition="bottom"
 
-let completionengines = ['google', 'wikipedia', 'youtube', 'imdb', 'amazon', 'google-maps', 'google-image', 'urbandictionary']
+" search engines
+
+let searchengine translate_en_fr = "https://translate.google.com/?source=osdd#en/fr/%s"
+let searchengine translate_fr_en = "https://translate.google.com/?source=osdd#fr/en/%s"
+
+
+let completionengines = ['google', 'wikipedia', 'youtube', 'imdb', 'amazon', 'google-maps', 'google-image', 'urbandictionary', 'translate_en_fr', 'translate_fr_en']
+
 let searchalias g = "google"
 let searchalias w = "wikipedia"
 let searchalias y = "google"
@@ -23,3 +30,6 @@ let searchalias a = "amazon"
 let searchalias gm = "google-maps"
 let searchalias gi = "google-image"
 let searchalias u = "urbandictionary"
+let searchalias t = "translate_en_fr"
+let searchalias tt = "translate_fr_en"
+
