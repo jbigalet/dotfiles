@@ -16,7 +16,7 @@ bindkey "^R" history-incremental-search-backward
 export EDITOR=vim
 
 alias ls="ls --color=auto"
-alias ll="ls -ahltr --color=auto"
+alias ll="ls -Ahltr --color=auto"
 alias grep="grep --color=auto"
 
 alias barbie="ssh barbie@91.121.80.76"
