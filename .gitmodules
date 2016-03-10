@@ -7,3 +7,4 @@
 [submodule ".dotfiles-local"]
 	path = .dotfiles-local
 	url = git://github.com/jbigalet/dotfiles-local.git
+	branch = -toreplace- # local branch autoupdated on checkout
