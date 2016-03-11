@@ -10,8 +10,11 @@ sed -i -e "s/= .* # local/= $(cat /etc/hostname) # local/" ~/dotfiles/.gitmodule
 clog "updating submodules"
 cd ~/dotfiles && git submodule update --init --recursive --remote
 
-clog "creating branch for local dotfile"
-cd ~/dotfiles/this && git checkout -B `cat /etc/hostname`
+if [[ `git rev-parse --abbrev-ref HEAD` -ne `cat /etc/hostname` ]]
+then
+  clog "creating branch for local dotfile"
+  cd ~/dotfiles/this && git checkout -B `cat /etc/hostname`
+fi
 
 cd ~/dotfiles
 
