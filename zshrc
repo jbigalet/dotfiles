@@ -23,8 +23,9 @@ alias barbie="ssh barbie@91.121.80.76"
 
 alias czsh="vim ~/.zshrc"
 alias cvim="vim ~/.vimrc"
-alias ci3="vim ~/.i3/config"
-alias cxr="vim ~/.Xresources"
+alias ci3="vim -O ~/.i3/config ~/.this/i3/config"
+alias ci3s="vim -O ~/.i3/i3status.conf ~/.this/i3/i3status.conf"
+alias cxr="vim -O ~/.Xresources ~/.this/Xresources"
 alias cxinit="vim ~/.xinitrc"
 
 alias grips="nohup grip > /dev/null 2>&1 &"
@@ -32,6 +33,7 @@ alias grips="nohup grip > /dev/null 2>&1 &"
 alias reload="source ~/.zshrc"
 
 alias pacin="sudo pacman -S"
+alias pacupd="sudo pacman -Sy"
 alias pacupg="sudo pacman -Syu"
 
 alias tarx="tar -zxvf"
