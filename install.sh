@@ -1,29 +1,35 @@
 #!/bin/bash
 
-echo "updating submodules...."
+function clog {
+  echo -e "\033[44m\033[1;37m$1"
+}
+
+clog "updating local branch in gitmodules"
 sed -i -e "s/= .* # local/= $(cat /etc/hostname) # local/" ~/dotfiles/.gitmodules
+
+clog "updating submodules"
 cd ~/dotfiles && git submodule update --init --recursive --remote
 
-# create branch for local dotfiles if it does not exists
-echo "creating branch for local dotfile....."
+clog "creating branch for local dotfile"
 cd ~/dotfiles/this && git checkout -B `cat /etc/hostname`
 
 cd ~/dotfiles
 
 # stash uncommited dotfiles
-echo "looking for local changes...."
-if [[ `git status | grep "nothing to commit" | wc -l` -ne 1 ]];then
-  echo "you have uncomitted changes - stashing"
+clog "looking for local changes"
+if [[ `git status | grep "nothing to commit" | wc -l` -ne 1 ]]
+then
+  clog "you have uncomitted changes - stashing"
   git stash -u
 fi
 
-echo "pulling....."
+clog "pulling"
 git pull origin master
 
 
 bckdir=~/dotfiles-bck/`date +%Y.%m.%d-%H:%M:%S`
 
-echo "linking files...."
+clog "linking files"
 for f in ~/dotfiles/*
 do
   base=`basename $f`
@@ -36,7 +42,7 @@ do
     if [ -L $dest ];then
       rm $dest
     elif [ -e $dest ]; then
-      echo "backuping existing file: $base"
+      clog "backing up existing file: $base"
       mkdir -p $bckdir
       mv $dest $bckdir/$base
     fi
