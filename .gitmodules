@@ -7,4 +7,4 @@
 [submodule "this"]
 	path = this
 	url = https://github.com/jbigalet/dotfiles-local.git
-	branch = thinkpad-arch # local branch autoupdated on checkout
+	branch = -toreplace- # local branch autoupdated on checkout

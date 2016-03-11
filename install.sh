@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "updating submodules...."
+sed -i -e "s/= .* # local/= $(cat /etc/hostname) # local/" ~/dotfiles/.gitmodules
 cd ~/dotfiles && git submodule update --init --recursive --remote
 
 # create branch for local dotfiles if it does not exists

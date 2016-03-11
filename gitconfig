@@ -14,3 +14,6 @@
 	prune = true
 [url "https://"]
 	insteadOf = git://
+[filter "update-local-branch"]
+  clean = "sed \"s/= .* # local/= -toreplace- # local/\""
+  smudge = "sed \"s/= .* # local/= $(cat /etc/hostname) # local/\""
