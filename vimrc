@@ -1,12 +1,14 @@
 set nocompatible
 
+" Plug {{{
+"   bloat {{{ 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
-
+"   }}}
 Plug 'VundleVim/Vundle.vim'
 " Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
 Plug 'a.vim', { 'for': ['c', 'cpp'] }
@@ -49,7 +51,10 @@ Plug 'junegunn/fzf.vim'
   "Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'for': ['c', 'cpp', 'python'] }
 "endif
 
+"   bloat {{{
 call plug#end()
+"   }}}
+" }}}
 
 set noswapfile
 
@@ -368,3 +373,9 @@ autocmd WinEnter    * set cursorline
 autocmd WinLeave    * set nocursorline
 autocmd InsertEnter * set nocursorline
 autocmd InsertLeave * set cursorline
+
+nnoremap gV `[v`] " highlight last inserted text
+
+nnoremap <leader>u :GundoToggle<CR>
+
+autocmd FileType vim set foldmethod=marker | set foldlevel=0
