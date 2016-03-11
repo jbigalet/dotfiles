@@ -1,3 +1,0 @@
-#!/bin/sh
-driver=/sys/class/backlight/intel_backlight
-tee $driver/brightness <<< $(($(< $driver/brightness) + $1))
