@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function clog {
-  echo -e "\033[44m\033[1;37m$1"
+  echo -e "\033[44m\033[1;37m$1\033[0m"
 }
 
 clog "updating local branch in gitmodules"
