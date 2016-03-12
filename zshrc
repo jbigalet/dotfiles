@@ -129,4 +129,6 @@ function mkdir_cd() {
 }
 alias cm=mkdir_cd
 
+alias update_pacman_mirrors="sudo reflector --verbose -l 100 -p http --sort rate --save /etc/pacman.d/mirrorlist"
+
 source ~/.bin/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
