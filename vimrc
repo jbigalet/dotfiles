@@ -9,7 +9,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 "   }}}
-Plug 'VundleVim/Vundle.vim'
 " Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
 Plug 'a.vim', { 'for': ['c', 'cpp'] }
 Plug 'jbigalet/vim-less', { 'for': 'less' }
@@ -20,11 +19,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'joom/latex-unicoder.vim'
-Plug 'mbbill/desertEx'
+" Plug 'mbbill/desertEx'
 Plug 'tomasr/molokai'
 Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-surround'
-Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+" Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -42,6 +41,7 @@ Plug 'jreybert/vimagit'
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'xml'] }
 Plug 'tpope/vim-eunuch'
 Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
+Plug 'AndrewRadev/linediff.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -122,7 +122,7 @@ set autoindent
 set lazyredraw
 
 set incsearch
-set hlsearch
+set nohlsearch
 
 if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j " delete comment character when joining commented lines
@@ -134,6 +134,7 @@ set sessionoptions-=options
 
 " Use Leader C to clear the highlighting of :set hlsearch.
 nnoremap <silent> <Leader>c :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <Leader>C :set hlsearch!<CR>
 
 
 let g:SimpylFold_docstring_preview = 1
@@ -208,7 +209,7 @@ map <S-tab> :bp<CR>
 set nopaste
 
 nnoremap S :Commentary<CR>
-vmap S :Commentary<CR>
+vnoremap s :Commentary<CR>
 
 vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
 nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
@@ -244,7 +245,7 @@ autocmd FileType python nnoremap <buffer> j :!python2 %<CR>
 
 if v:version >= 703
   autocmd BufRead * set colorcolumn=
-  autocmd BufRead *.py set colorcolumn=80
+  autocmd BufRead *.py set colorcolumn=100
 endif
 
 " nnoremap k :!make client<CR>
@@ -330,8 +331,8 @@ autocmd FileType html,css,xml EmmetInstall
 let g:user_emmet_mode="i"
 let g:user_emmet_leader_key='<C-E>'
 
-set iskeyword-=_
-set iskeyword+=$,@,%,#
+" set iskeyword-=_
+" set iskeyword+=$,@,%,#
 
 set modeline
 set modelines=10
@@ -343,7 +344,7 @@ autocmd FileType vim setlocal keywordprg=:help
 set list listchars=trail:.,tab:>.
 highlight SpecialKey ctermfg=DarkGray ctermbg=Black
 
-set whichwrap+=h,l
+" set whichwrap+=h,l
 
 set ignorecase
 set smartcase
@@ -351,6 +352,7 @@ set smartcase
 set nojoinspaces
 
 command! StripWhitespace %s/ \+$//gc
+command! StripWhitespaceForce %s/ \+$//g
 
 " cnoremap <C-j> <Left>
 " cnoremap <C-k> <Down>
@@ -379,3 +381,20 @@ nnoremap gV `[v`] " highlight last inserted text
 nnoremap <leader>u :GundoToggle<CR>
 
 autocmd FileType vim set foldmethod=marker | set foldlevel=0
+
+nnoremap ZA zA
+
+autocmd FileType rst nnoremap <buffer> HH :t.\|s/./`/g<CR>
+autocmd FileType rst nnoremap <buffer> H- :t.\|s/./-/g<CR>
+autocmd FileType rst nnoremap <buffer> H= :t.\|s/./=/g<CR>
+
+nmap <C-F> <Plug>CtrlSFPrompt
+nmap <C-F>w <Plug>CtrlSFCwordExec
+nmap <C-F>/ <Plug>CtrlSFPwordExec
+vmap <C-F> <Plug>CtrlSFVwordExec
+
+nmap <Leader>d yyP:Commentary<CR>k
+vmap <Leader>d :Commentary<CR>gvyPgv:Commentary<CR>
+
+autocmd FileType python nnoremap <buffer> <Leader>D "nyawoprint '<C-r>n: %s' % str(<C-r>n)<esc>
+autocmd FileType python vnoremap <buffer> <Leader>D "nyoprint '<C-r>n: %s' % str(<C-r>n)<esc>

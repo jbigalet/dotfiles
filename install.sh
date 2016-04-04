@@ -30,7 +30,7 @@ clog "pulling"
 git pull origin master
 
 
-bckdir=~/dotfiles-bck/`date +%Y.%m.%d-%H:%M:%S`
+bckdir=~/dotfiles-bck/`date +%Y.%m.%d-%H-%M-%S`
 
 clog "linking files"
 for f in ~/dotfiles/*
@@ -42,7 +42,7 @@ do
 
     dest=~/.$base
 
-    if [ -L $dest ];then
+    if [ -L $dest ]; then
       rm $dest
     elif [ -e $dest ]; then
       clog "backing up existing file: $base"
