@@ -110,6 +110,12 @@ alias tat="tmux attach -t"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+function ass() {
+  as $1.s -o obj/$1.o
+  ld obj/$1.o -o bin/$1
+  ./bin/$1
+}
+
 if (( $+commands[thefuck] ))
 then
   eval $(thefuck --alias)

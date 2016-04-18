@@ -406,3 +406,6 @@ vmap <Leader>d :Commentary<CR>gvyPgv:Commentary<CR>
 
 autocmd FileType python nnoremap <buffer> <Leader>D "nyawoprint '<C-r>n: %s' % str(<C-r>n)<esc>
 autocmd FileType python vnoremap <buffer> <Leader>D "nyoprint '<C-r>n: %s' % str(<C-r>n)<esc>
+
+nnoremap - <C-w><
+nnoremap è <C-w>>
