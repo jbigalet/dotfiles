@@ -42,6 +42,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'xml'] }
 Plug 'tpope/vim-eunuch'
 Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 Plug 'AndrewRadev/linediff.vim'
+" Plug 'junegunn/vim-peekaboo'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -117,6 +118,9 @@ function! LineNumberToggle()
 endfunction
 nnoremap <Leader>l :call LineNumberToggle()<CR>
 
+nnoremap - <C-w><
+nnoremap è <C-w>>
+
 set autoindent
 
 set lazyredraw
@@ -136,6 +140,8 @@ set sessionoptions-=options
 nnoremap <silent> <Leader>c :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 nnoremap <silent> <Leader>C :set hlsearch!<CR>
 
+nnoremap <silent> <Leader>r :syn sync fromstart<CR>
+
 
 let g:SimpylFold_docstring_preview = 1
 autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
@@ -150,6 +156,8 @@ nnoremap <Leader>p :CtrlPBuffer<CR>
 let g:ctrlp_reuse_window = 'startify'
 
 nnoremap <Leader>p :CtrlPBuffer<CR>
+
+let g:peekaboo_window = 'vertical topleft 30new'
 
 nnoremap <expr> ZZ 'zz' . winheight(0)/4 . '<C-e>'
 nnoremap <expr> ZT 'zz' . winheight(0)/4 . '<C-e>'
@@ -234,10 +242,10 @@ nnoremap <C-k> <C-w><C-j>
 nnoremap <C-l> <C-w><C-k>
 nnoremap <C-m> <C-w><C-l>
 
-nnoremap <Leader><Left> <C-w><S-h>
-nnoremap <Leader><Down> <C-w><S-j>
-nnoremap <Leader><Up> <C-w><S-k>
-nnoremap <Leader><Right> <C-w><S-l>
+nnoremap <Left> <C-w><S-h>
+nnoremap <Down> <C-w><S-j>
+nnoremap <Up> <C-w><S-k>
+nnoremap <Right> <C-w><S-l>
 
 " j <=> <A-j>, in 7 bit mode terminal. Reminder: to print j, press <C-v> <A-j>
 autocmd FileType julia nnoremap <buffer> j :!julia %<CR>
