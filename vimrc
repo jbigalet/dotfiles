@@ -43,6 +43,11 @@ Plug 'tpope/vim-eunuch'
 Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 Plug 'AndrewRadev/linediff.vim'
 " Plug 'junegunn/vim-peekaboo'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'mtth/scratch.vim'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
+Plug 'svermeulen/vim-easyclip'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -65,7 +70,9 @@ set shiftwidth=2
 set softtabstop=2
 set smarttab
 
-set linebreak "wrap on words, not on character
+set clipboard=unnamedplus
+
+" set linebreak "wrap on words, not on character
 
 syn on
 
@@ -94,10 +101,12 @@ if !has('gui_running')
   augroup END
 endif
 
-inoremap jk <esc>
-inoremap kj <esc>
-inoremap kl <esc>
-inoremap lk <esc>
+" inoremap jk <esc>
+" inoremap kj <esc>
+" inoremap kl <esc>
+" inoremap lk <esc>
+
+nnoremap gS :Scratch<CR>
 
 " Always show statusline
 set laststatus=2
@@ -207,7 +216,9 @@ augroup END
 command! JsonFormatting %!python -m json.tool
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tabs = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
 
 ca w!! w !sudo tee % >/dev/null
 
@@ -224,7 +235,7 @@ nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<
 map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
 map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
 
-noremap h m
+noremap gm m
 noremap m l
 noremap l k
 noremap k j
@@ -399,6 +410,7 @@ autocmd FileType rst nnoremap <buffer> H= :t.\|s/./=/g<CR>
 nmap <C-F> <Plug>CtrlSFPrompt
 nmap <C-F>w <Plug>CtrlSFCwordExec
 nmap <C-F>/ <Plug>CtrlSFPwordExec
+nmap <C-F>r <Plug>CtrlSFPrompt -R 
 vmap <C-F> <Plug>CtrlSFVwordExec
 
 nmap <Leader>d yyP:Commentary<CR>k
@@ -407,5 +419,28 @@ vmap <Leader>d :Commentary<CR>gvyPgv:Commentary<CR>
 autocmd FileType python nnoremap <buffer> <Leader>D "nyawoprint '<C-r>n: %s' % str(<C-r>n)<esc>
 autocmd FileType python vnoremap <buffer> <Leader>D "nyoprint '<C-r>n: %s' % str(<C-r>n)<esc>
 
-nnoremap - <C-w><
-nnoremap è <C-w>>
+" Abolish udpate update
+
+" Easy clip
+let g:EasyClipAlwaysMoveCursorToEndOfPaste = 1
+let g:EasyClipAutoFormat = 1
+
+nmap <leader>a <plug>EasyClipToggleFormattedPaste
+
+let g:EasyClipUseCutDefaults = 0
+
+nmap h <Plug>MoveMotionPlug
+xmap h <Plug>MoveMotionXPlug
+nmap hh <Plug>MoveMotionLinePlug
+nmap H <Plug>MoveMotionEndOfLinePlug
+
+
+let g:EasyClipUsePasteToggleDefaults = 0
+
+nmap <Leader>n <plug>EasyClipSwapPasteForward
+nmap <Leader>N <plug>EasyClipSwapPasteBackwards
+
+nmap <silent> gh <plug>SubstituteOverMotionMap
+nmap ghh <plug>SubstituteLine
+nmap gH <plug>SubstituteLine
+xmap gh <plug>XEasyClipPaste
