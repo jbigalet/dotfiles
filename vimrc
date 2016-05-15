@@ -43,6 +43,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 Plug 'AndrewRadev/linediff.vim'
 " Plug 'junegunn/vim-peekaboo'
+Plug 'justinmk/vim-sneak'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mtth/scratch.vim'
 Plug 'tpope/vim-repeat'
@@ -230,10 +231,10 @@ set nopaste
 nnoremap S :Commentary<CR>
 vnoremap s :Commentary<CR>
 
-vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
-nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
-map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
-map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
+" vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
+" nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
+" map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
+" map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
 
 noremap gm m
 noremap m l
