@@ -49,6 +49,11 @@ Plug 'mtth/scratch.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'svermeulen/vim-easyclip'
+" Plug 'justinmk/vim-gtfo'
+Plug 'kopischke/vim-fetch'
+Plug 'chrisbra/Colorizer', { 'on': ['ColorHighlight'] }
+Plug 'inside/vim-search-pulse'
+" Plug 'gcavallanti/vim-noscrollbar'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -261,7 +266,7 @@ nnoremap <Right> <C-w><S-l>
 
 " j <=> <A-j>, in 7 bit mode terminal. Reminder: to print j, press <C-v> <A-j>
 autocmd FileType julia nnoremap <buffer> j :!julia %<CR>
-autocmd FileType python nnoremap <buffer> j :!python2 %<CR>
+autocmd FileType python nnoremap <buffer> j :!python %<CR>
 
 if v:version >= 703
   autocmd BufRead * set colorcolumn=
@@ -445,3 +450,5 @@ nmap <silent> gh <plug>SubstituteOverMotionMap
 nmap ghh <plug>SubstituteLine
 nmap gH <plug>SubstituteLine
 xmap gh <plug>XEasyClipPaste
+
+" let g:gtfo#terminals = { 'unix' : 'urxvt -cd' }
