@@ -1,4 +1,4 @@
-let configpath = '/home/jbigalet/.cvimrc'
+let configpath = '/home/barbie/.cvimrc'
 set localconfig
 
 set smoothscroll

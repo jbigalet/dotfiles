@@ -9,7 +9,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 "   }}}
-" Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
+Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
 Plug 'a.vim', { 'for': ['c', 'cpp'] }
 Plug 'jbigalet/vim-less', { 'for': 'less' }
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -272,6 +272,7 @@ nnoremap <Right> <C-w><S-l>
 autocmd FileType julia nnoremap <buffer> j :!julia %<CR>
 autocmd FileType python nnoremap <buffer> j :!python %<CR>
 autocmd FileType cpp nnoremap <buffer> j :make! run<CR>
+autocmd FileType asm nnoremap <buffer> j :!./run<CR>
 
 if v:version >= 703
   autocmd BufRead * set colorcolumn=
@@ -362,7 +363,7 @@ autocmd FileType html,css,xml EmmetInstall
 let g:user_emmet_mode="i"
 let g:user_emmet_leader_key='<C-E>'
 
-" set iskeyword-=_
+set iskeyword+=_
 " set iskeyword+=$,@,%,#
 
 set modeline
