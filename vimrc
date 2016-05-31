@@ -452,3 +452,4 @@ nmap gH <plug>SubstituteLine
 xmap gh <plug>XEasyClipPaste
 
 " let g:gtfo#terminals = { 'unix' : 'urxvt -cd' }
+nnoremap <Leader><CR> hf s<CR><Esc>
