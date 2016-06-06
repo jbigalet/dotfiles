@@ -142,6 +142,8 @@ fi
 
 alias e="vim"
 
+alias whoop="mplayer ~/whoop.mp3"
+
 function mkdir_cd() {
   mkdir -p $1
   cd $1

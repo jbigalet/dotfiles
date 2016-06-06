@@ -54,6 +54,9 @@ Plug 'kopischke/vim-fetch'
 Plug 'chrisbra/Colorizer', { 'on': ['ColorHighlight'] }
 Plug 'inside/vim-search-pulse'
 " Plug 'gcavallanti/vim-noscrollbar'
+Plug 'tpope/vim-obsession'
+Plug 'AndrewRadev/sideways.vim'
+Plug 'bkad/CamelCaseMotion'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -61,6 +64,7 @@ Plug 'junegunn/fzf.vim'
 "if (v:version > 703 || v:version == 703 && has('patch598')) && has('python')
   Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
   "Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'for': ['c', 'cpp', 'python'] }
+  Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 "endif
 
 "   bloat {{{
@@ -267,6 +271,7 @@ nnoremap <Right> <C-w><S-l>
 " j <=> <A-j>, in 7 bit mode terminal. Reminder: to print j, press <C-v> <A-j>
 autocmd FileType julia nnoremap <buffer> j :!julia %<CR>
 autocmd FileType python nnoremap <buffer> j :!python %<CR>
+autocmd FileType cpp nnoremap <buffer> j :make! run<CR>
 
 if v:version >= 703
   autocmd BufRead * set colorcolumn=
@@ -324,6 +329,7 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_server_python_interpreter="/usr/bin/python3"
 
 set scrolloff=3
 
@@ -450,6 +456,17 @@ nmap <silent> gh <plug>SubstituteOverMotionMap
 nmap ghh <plug>SubstituteLine
 nmap gH <plug>SubstituteLine
 xmap gh <plug>XEasyClipPaste
+
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+
+call camelcasemotion#CreateMotionMappings('<leader>')
+omap <silent> a, <Plug>CamelCaseMotion_ie
+xmap <silent> a, <Plug>CamelCaseMotion_ie
+omap <silent> i, <Plug>CamelCaseMotion_ie
+xmap <silent> i, <Plug>CamelCaseMotion_ie
 
 " let g:gtfo#terminals = { 'unix' : 'urxvt -cd' }
 nnoremap <Leader><CR> hf s<CR><Esc>
