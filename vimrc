@@ -273,6 +273,7 @@ autocmd FileType julia nnoremap <buffer> j :!julia %<CR>
 autocmd FileType python nnoremap <buffer> j :!python %<CR>
 autocmd FileType cpp nnoremap <buffer> j :make! run<CR>
 autocmd FileType asm nnoremap <buffer> j :!./run<CR>
+autocmd FileType cpp nnoremap <buffer> j :make! run<CR>
 
 if v:version >= 703
   autocmd BufRead * set colorcolumn=
