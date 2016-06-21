@@ -9,7 +9,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 "   }}}
-Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
+" Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
 Plug 'a.vim', { 'for': ['c', 'cpp'] }
 Plug 'jbigalet/vim-less', { 'for': 'less' }
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -58,14 +58,16 @@ Plug 'tpope/vim-obsession'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'bkad/CamelCaseMotion'
 
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+" Plug 'junegunn/seoul256.vim'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-"if (v:version > 703 || v:version == 703 && has('patch598')) && has('python')
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
-  "Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'for': ['c', 'cpp', 'python'] }
-  Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-"endif
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'for': ['c', 'cpp', 'python'] }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 "   bloat {{{
 call plug#end()
@@ -472,3 +474,6 @@ xmap <silent> i, <Plug>CamelCaseMotion_ie
 
 " let g:gtfo#terminals = { 'unix' : 'urxvt -cd' }
 nnoremap <Leader><CR> hf s<CR><Esc>
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
