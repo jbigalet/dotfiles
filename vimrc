@@ -248,7 +248,7 @@ vnoremap s :Commentary<CR>
 " map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
 " map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
 
-noremap gm m
+" noremap gm m  " no needed while using signature mode to handle marking
 noremap m l
 noremap l k
 noremap k j
@@ -478,3 +478,28 @@ nnoremap <Leader><CR> hf s<CR><Esc>
 
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+
+let g:SignatureMap = {
+      \ 'Leader'             :  "gm",
+      \ 'PlaceNextMark'      :  "gm,",
+      \ 'ToggleMarkAtLine'   :  "gm.",
+      \ 'PurgeMarksAtLine'   :  "gm-",
+      \ 'DeleteMark'         :  "dm",
+      \ 'PurgeMarks'         :  "gm<Space><Space><Space>x",
+      \ 'PurgeMarkers'       :  "",
+      \ 'GotoNextLineAlpha'  :  "']",
+      \ 'GotoPrevLineAlpha'  :  "'[",
+      \ 'GotoNextSpotAlpha'  :  "`]",
+      \ 'GotoPrevSpotAlpha'  :  "`[",
+      \ 'GotoNextLineByPos'  :  "]'",
+      \ 'GotoPrevLineByPos'  :  "['",
+      \ 'GotoNextSpotByPos'  :  "]`",
+      \ 'GotoPrevSpotByPos'  :  "[`",
+      \ 'GotoNextMarker'     :  "]-",
+      \ 'GotoPrevMarker'     :  "[-",
+      \ 'GotoNextMarkerAny'  :  "]=",
+      \ 'GotoPrevMarkerAny'  :  "[=",
+      \ 'ListBufferMarks'    :  "gm/",
+      \ 'ListBufferMarkers'  :  "gm?"
+      \ }
