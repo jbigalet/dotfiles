@@ -57,6 +57,7 @@ Plug 'inside/vim-search-pulse'
 Plug 'tpope/vim-obsession'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'bkad/CamelCaseMotion'
+Plug 'kshenoy/vim-signature'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -273,9 +274,9 @@ nnoremap <Right> <C-w><S-l>
 " j <=> <A-j>, in 7 bit mode terminal. Reminder: to print j, press <C-v> <A-j>
 autocmd FileType julia nnoremap <buffer> j :!julia %<CR>
 autocmd FileType python nnoremap <buffer> j :!python %<CR>
-autocmd FileType cpp nnoremap <buffer> j :make! run<CR>
 autocmd FileType asm nnoremap <buffer> j :!./run<CR>
 autocmd FileType cpp nnoremap <buffer> j :make! run<CR>
+autocmd FileType tex nnoremap <buffer> j :make! run<CR>
 
 if v:version >= 703
   autocmd BufRead * set colorcolumn=
