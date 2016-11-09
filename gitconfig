@@ -12,8 +12,54 @@
 	autocrlf = input
 [fetch]
 	prune = true
+
 [url "https://"]
 	insteadOf = git://
+
 [filter "update-local-branch"]
   clean = "sed \"s/= .* # local/= -toreplace- # local/\""
   smudge = "sed \"s/= .* # local/= $(cat /etc/hostname) # local/\""
+
+[alias]
+  s="status -sb"
+  ss="status"
+  a="add"
+  au="add -u"
+  c="commit -m"
+  ca="commit --amend"
+  l="log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+  ls="log"
+  d="diff"
+  m="diff --name-only --diff-filter=U"
+  dl="diff HEAD~1"
+  dlc="diff HEAD~1 HEAD"
+  dc="diff --cached"
+  dp="diff @{1}.."
+  p="push origin master"
+  po="push origin"
+  g="pull --rebase origin master"
+  go="pull --rebase origin"
+  b="branch -vv"
+  ba="branch -vv --all"
+  bn="branch"
+  t="stash"
+  tp="stash pop"
+  tf="stash show"
+  td="stash show -p"
+  tl="stash list"
+  h="checkout"
+  hn="checkout -B"
+  f="fetch"
+  fa="fetch --all"
+  fo="fetch origin"
+  foa="fetch --all origin"
+  ym="merge"
+  ymm="merge master"
+  yr="rebase"
+  yrm="rebase master"
+  yrc="rebase --continue"
+  yra="rebase --abort"
+  yri="rebase --interactive"
+  rs="config --get remote.origin.url"
+  e="reflog"
+  rn="remote add origin"

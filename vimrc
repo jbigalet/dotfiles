@@ -63,6 +63,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 " Plug 'junegunn/seoul256.vim'
 
+Plug 'stephpy/vim-yaml'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -78,9 +80,9 @@ call plug#end()
 set noswapfile
 
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set smarttab
 
 set clipboard=unnamedplus
