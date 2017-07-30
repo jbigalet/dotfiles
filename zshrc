@@ -28,6 +28,9 @@ alias ci3s="vim -O ~/.i3/i3status.conf ~/.this/i3/i3status.conf"
 alias cxr="vim -O ~/.Xresources ~/.this/Xresources"
 alias cxinit="vim ~/.xinitrc"
 
+alias vsd="mv ~/.drircb ~/.drirc"
+alias vse="mv ~/.drirc ~/.drircb"
+
 alias grips="nohup grip > /dev/null 2>&1 &"
 
 alias reload="source ~/.zshrc"

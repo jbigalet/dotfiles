@@ -1,5 +1,7 @@
 ! urxvt
 
+URxvt.saveLines:         20000
+
 URxvt*geometry:                115x40
 
 URxvt.font: xft:DejaVu Sans Mono:size=12

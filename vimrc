@@ -62,6 +62,11 @@ Plug 'kshenoy/vim-signature'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 " Plug 'junegunn/seoul256.vim'
+Plug 'beyondmarc/glsl.vim'
+
+" Plug 'LucHermitte/lh-vim-lib'
+" Plug 'LucHermitte/VimFold4C'
+
 
 Plug 'stephpy/vim-yaml'
 
@@ -103,6 +108,7 @@ let mapleader=" "
 " colorscheme desertEx
 " autocmd BufEnter * colorscheme desertEx
 " autocmd BufEnter *.py colorscheme molokai
+let g:rehash256 = 1
 colorscheme molokai
 
 filetype plugin indent on
@@ -242,6 +248,11 @@ map <S-tab> :bp<CR>
 
 set nopaste
 
+highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
+highlight multiple_cursors_visual term=reverse cterm=reverse gui=reverse
+let g:multi_cursor_exit_from_visual_mode=0
+let g:multi_cursor_exit_from_insert_mode=0
+
 nnoremap S :Commentary<CR>
 vnoremap s :Commentary<CR>
 
@@ -275,10 +286,15 @@ nnoremap <Right> <C-w><S-l>
 
 " j <=> <A-j>, in 7 bit mode terminal. Reminder: to print j, press <C-v> <A-j>
 autocmd FileType julia nnoremap <buffer> j :!julia %<CR>
-autocmd FileType python nnoremap <buffer> j :!python %<CR>
+autocmd FileType python nnoremap <buffer> j :!python2.7 %<CR>
 autocmd FileType asm nnoremap <buffer> j :!./run<CR>
 autocmd FileType cpp nnoremap <buffer> j :make! run<CR>
 autocmd FileType tex nnoremap <buffer> j :make! run<CR>
+
+" align C preproc blocks
+autocmd FileType cpp,c vnoremap <buffer> X :<home>silent!<end>s/\([^\\]\)$/\1\\/<CR>gv<bar>:s/\\$/   \\/<CR>gv<bar>:EasyAlign /   \\/$<CR>
+autocmd FileType cpp,c nnoremap <buffer> X vip:<home>silent!<end>s/\([^\\]\)$/\1\\/<CR>gv<bar>:s/\\$/   \\/<CR>gv<bar>:EasyAlign /   \\$/<CR>gvV$x:s/ \+$//g<CR>
+
 
 if v:version >= 703
   autocmd BufRead * set colorcolumn=
@@ -336,7 +352,7 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_server_python_interpreter="/usr/bin/python3"
+let g:ycm_server_python_interpreter="/usr/bin/python2"
 
 set scrolloff=3
 
@@ -392,6 +408,8 @@ set nojoinspaces
 command! StripWhitespace %s/ \+$//gc
 command! StripWhitespaceForce %s/ \+$//g
 
+command! -range CamelCaseToSnakeCase :<line1>,<line2>s#\C\(\<\u[a-z0-9]\+\|[a-z0-9]\+\)\(\u\)#\l\1_\l\2#g
+
 " cnoremap <C-j> <Left>
 " cnoremap <C-k> <Down>
 " cnoremap <C-l> <Up>
@@ -438,6 +456,11 @@ vmap <Leader>d :Commentary<CR>gvyPgv:Commentary<CR>
 autocmd FileType python nnoremap <buffer> <Leader>D "nyawoprint '<C-r>n: %s' % str(<C-r>n)<esc>
 autocmd FileType python vnoremap <buffer> <Leader>D "nyoprint '<C-r>n: %s' % str(<C-r>n)<esc>
 
+autocmd FileType cpp nnoremap <buffer> <Leader>D "nyiwoio::println("<C-r>n: ", <C-r>n);<esc>
+autocmd FileType cpp vnoremap <buffer> <Leader>D "nyoio::println("<C-r>n: ", <C-r>n);<esc>
+autocmd FileType cpp set foldmethod=syntax
+autocmd FileType cpp set foldnestmax=1
+
 " Abolish udpate update
 
 " Easy clip
@@ -476,7 +499,7 @@ omap <silent> i, <Plug>CamelCaseMotion_ie
 xmap <silent> i, <Plug>CamelCaseMotion_ie
 
 " let g:gtfo#terminals = { 'unix' : 'urxvt -cd' }
-nnoremap <Leader><CR> hf s<CR><Esc>
+nnoremap <Leader><CR> hf s<CR><Esc>l
 
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
