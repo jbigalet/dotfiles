@@ -92,8 +92,10 @@ alias gdc="git diff --cached"
 alias gdp="git diff @{1}.."
 alias gp="git push origin master"
 alias gpo="git push origin"
+alias gpc='git push origin "$(git rev-parse --abbrev-ref HEAD)"'
 alias gg="git pull --rebase origin master"
 alias ggo="git pull --rebase origin"
+alias ggc='git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)"'
 alias gb="git branch -vv"
 alias gba="git branch -vv --all"
 alias gbs="git branch"
@@ -113,6 +115,8 @@ alias gfoa="git fetch --all origin"
 alias gym="git merge"
 alias gymm="git merge master"
 alias gyr="git rebase"
+alias gyrc="git rebase --continue"
+alias gyra="git rebase --abort"
 alias gyrm="git rebase master"
 alias grs="git config --get remote.origin.url"
 alias ge="git reflog"
@@ -158,6 +162,15 @@ function mkdir_cd() {
   cd $1
 }
 alias cm=mkdir_cd
+
+function agi() {
+    local f="ag "
+    for p in "${@:1:$#@-1}"; do  # foreach arg except the last
+        f="$f --ignore \"*.$p\"";
+    done
+    f="$f ${@: -1}"  # append last arg (needed space)
+    eval $f
+}
 
 alias update_pacman_mirrors="sudo reflector --verbose -l 100 -p http --sort rate --save /etc/pacman.d/mirrorlist"
 

@@ -63,3 +63,5 @@
   rs="config --get remote.origin.url"
   e="reflog"
   rn="remote add origin"
+[rerere]
+	enabled = 1

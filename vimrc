@@ -10,30 +10,30 @@ endif
 call plug#begin('~/.vim/plugged')
 "   }}}
 " Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
-Plug 'a.vim', { 'for': ['c', 'cpp'] }
-Plug 'jbigalet/vim-less', { 'for': 'less' }
-Plug 'elzr/vim-json', { 'for': 'json' }
+" Plug 'a.vim', { 'for': ['c', 'cpp'] }
+" Plug 'jbigalet/vim-less', { 'for': 'less' }
+" Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-Plug 'joom/latex-unicoder.vim'
+Plug 'joom/latex-unicoder.vim', { 'for': 'tex' }
 " Plug 'mbbill/desertEx'
 Plug 'tomasr/molokai'
-Plug 'tmhedberg/SimpylFold'
+" Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-surround'
 " Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-startify'
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
 " Plug 'scrooloose/nerdtree'
-Plug 'jwalton512/vim-blade', { 'for': 'blade' }
+" Plug 'jwalton512/vim-blade', { 'for': 'blade' }
 Plug 'terryma/vim-multiple-cursors'
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+" Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'sjl/gundo.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'jreybert/vimagit'
@@ -45,9 +45,9 @@ Plug 'AndrewRadev/linediff.vim'
 " Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-sneak'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'mtth/scratch.vim'
+" Plug 'mtth/scratch.vim'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-abolish'
+" Plug 'tpope/vim-abolish'
 Plug 'svermeulen/vim-easyclip'
 " Plug 'justinmk/vim-gtfo'
 Plug 'kopischke/vim-fetch'
@@ -56,7 +56,7 @@ Plug 'inside/vim-search-pulse'
 " Plug 'gcavallanti/vim-noscrollbar'
 Plug 'tpope/vim-obsession'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'bkad/CamelCaseMotion'
+" Plug 'bkad/CamelCaseMotion'
 Plug 'kshenoy/vim-signature'
 
 Plug 'junegunn/goyo.vim'
@@ -68,14 +68,21 @@ Plug 'beyondmarc/glsl.vim'
 " Plug 'LucHermitte/VimFold4C'
 
 
+Plug 'itspriddle/ZoomWin'
+
+" Plug 'beyondmarc/glsl.vim'
+Plug 'tikhomirov/vim-glsl'
+
 Plug 'stephpy/vim-yaml'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+Plug 'Konfekt/FastFold'
+
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.sh', 'for': ['c', 'cpp', 'python'] }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 "   bloat {{{
 call plug#end()
@@ -89,6 +96,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set smarttab
+set regexpengine=1
 
 set clipboard=unnamedplus
 
@@ -114,7 +122,7 @@ colorscheme molokai
 filetype plugin indent on
 
 if !has('gui_running')
-  set ttimeoutlen=100
+  set ttimeoutlen=0
   augroup FastEscape
     autocmd!
     autocmd InsertEnter * set timeoutlen=100
@@ -134,6 +142,8 @@ set laststatus=2
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
+
+let g:fastfold_savehook = 0
 
 function! LineNumberToggle()
   if(&relativenumber == 1)
@@ -192,6 +202,12 @@ let g:peekaboo_window = 'vertical topleft 30new'
 nnoremap <expr> ZZ 'zz' . winheight(0)/4 . '<C-e>'
 nnoremap <expr> ZT 'zz' . winheight(0)/4 . '<C-e>'
 nnoremap <expr> ZB 'zz' . winheight(0)/4 . '<C-y>'
+
+" disable autofolding while typing
+" autocmd InsertLeave,WinEnter * setlocal foldmethod=syntax
+" autocmd InsertEnter,WinLeave * setlocal foldmethod=manual
+
+autocmd! BufNewFile,BufRead *.glsl set filetype=glsl
 
 nnoremap <Leader>o :A<CR>
 nnoremap <Leader>O :AV<CR>
@@ -288,7 +304,6 @@ nnoremap <Right> <C-w><S-l>
 autocmd FileType julia nnoremap <buffer> j :!julia %<CR>
 autocmd FileType python nnoremap <buffer> j :!python2.7 %<CR>
 autocmd FileType asm nnoremap <buffer> j :!./run<CR>
-autocmd FileType cpp nnoremap <buffer> j :make! run<CR>
 autocmd FileType tex nnoremap <buffer> j :make! run<CR>
 
 " align C preproc blocks
@@ -307,29 +322,29 @@ endif
 set pastetoggle=<F1>
 
 " C++ autoinsert header
-function! s:insert_gates()
-  let gatename = substitute(toupper(expand("%:r")), "\\.", "_", "g")
-  let classname = substitute(expand("%:r"), '^.\|_\zs\a', '\u&', 'g')
-  execute "normal! i#ifndef DEF_" . gatename
-  execute "normal! o#define DEF_" . gatename . " "
-  execute "normal! o\<CR>class " . classname . " {"
-  execute "normal! opublic:"
-  execute "normal! o" . classname . "();"
-  execute "normal! o~" . classname . "();"
-  execute "normal! o};"
-  execute "normal! Go\<CR>#endif /* DEF_" . gatename . " */"
-endfunction
-autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
+" function! s:insert_gates()
+"   let gatename = substitute(toupper(expand("%:r")), "\\.", "_", "g")
+"   let classname = substitute(expand("%:r"), '^.\|_\zs\a', '\u&', 'g')
+"   execute "normal! i#ifndef DEF_" . gatename
+"   execute "normal! o#define DEF_" . gatename . " "
+"   execute "normal! o\<CR>class " . classname . " {"
+"   execute "normal! opublic:"
+"   execute "normal! o" . classname . "();"
+"   execute "normal! o~" . classname . "();"
+"   execute "normal! o};"
+"   execute "normal! Go\<CR>#endif /* DEF_" . gatename . " */"
+" endfunction
+" autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
 
-function! s:insert_implementation()
-  let classname = substitute(expand("%:r"), '^.\|_\zs\a', '\u&', 'g')
-  execute "normal! i#include \"" . expand("%:r") . ".h\""
-  execute "normal! o\<CR>" . classname . "::" . classname . "() {"
-  execute "normal! o\<CR>}"
-  execute "normal! o\<CR>" . classname . "::~" . classname . "() {"
-  execute "normal! o\<CR>}"
-endfunction
-autocmd BufNewFile *.{c,cpp} call <SID>insert_implementation()
+" function! s:insert_implementation()
+"   let classname = substitute(expand("%:r"), '^.\|_\zs\a', '\u&', 'g')
+"   execute "normal! i#include \"" . expand("%:r") . ".h\""
+"   execute "normal! o\<CR>" . classname . "::" . classname . "() {"
+"   execute "normal! o\<CR>}"
+"   execute "normal! o\<CR>" . classname . "::~" . classname . "() {"
+"   execute "normal! o\<CR>}"
+" endfunction
+" autocmd BufNewFile *.{c,cpp} call <SID>insert_implementation()
 
 set virtualedit=block "Visual block mode (<c-v>): can move outside of actual text
 
@@ -357,7 +372,7 @@ let g:ycm_server_python_interpreter="/usr/bin/python2"
 set scrolloff=3
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
@@ -368,6 +383,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_python_exec = '/usr/bin/python2'
 let g:syntastic_python_checkers = ['flake8', 'python']
 let g:syntastic_python_flake8_exec = 'flake8-python2'
+
+" disable syntastic by default
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
 command! PythonBreakImports g/^import/s/, */\rimport /g
 
@@ -458,8 +476,11 @@ autocmd FileType python vnoremap <buffer> <Leader>D "nyoprint '<C-r>n: %s' % str
 
 autocmd FileType cpp nnoremap <buffer> <Leader>D "nyiwoio::println("<C-r>n: ", <C-r>n);<esc>
 autocmd FileType cpp vnoremap <buffer> <Leader>D "nyoio::println("<C-r>n: ", <C-r>n);<esc>
-autocmd FileType cpp set foldmethod=syntax
-autocmd FileType cpp set foldnestmax=1
+autocmd FileType c,cpp set foldmethod=syntax
+autocmd FileType c,cpp set foldnestmax=1
+
+autocmd FileType c,cpp nnoremap <buffer> k zj
+autocmd FileType c,cpp nnoremap <buffer> l zk
 
 " Abolish udpate update
 
@@ -492,11 +513,11 @@ xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
 
-call camelcasemotion#CreateMotionMappings('<leader>')
-omap <silent> a, <Plug>CamelCaseMotion_ie
-xmap <silent> a, <Plug>CamelCaseMotion_ie
-omap <silent> i, <Plug>CamelCaseMotion_ie
-xmap <silent> i, <Plug>CamelCaseMotion_ie
+" call camelcasemotion#CreateMotionMappings('<leader>')
+" omap <silent> a, <Plug>CamelCaseMotion_ie
+" xmap <silent> a, <Plug>CamelCaseMotion_ie
+" omap <silent> i, <Plug>CamelCaseMotion_ie
+" xmap <silent> i, <Plug>CamelCaseMotion_ie
 
 " let g:gtfo#terminals = { 'unix' : 'urxvt -cd' }
 nnoremap <Leader><CR> hf s<CR><Esc>l
