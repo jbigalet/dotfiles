@@ -63,6 +63,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 " Plug 'junegunn/seoul256.vim'
 Plug 'beyondmarc/glsl.vim'
+Plug 'beyondmarc/hlsl.vim'
 
 " Plug 'LucHermitte/lh-vim-lib'
 " Plug 'LucHermitte/VimFold4C'
