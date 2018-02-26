@@ -42,7 +42,7 @@ alias pacupg="sudo pacman -Syu"
 alias tarx="tar -zxvf"
 alias tarc="tar -zcvf"
 
-. ~/.bin/packages/z/z.sh
+# . ~/.bin/packages/z/z.sh
 
 if [[ ${$(hostname)%%.*} == "jbigalet-arch" ]] then
   function powerline_precmd() {
@@ -62,6 +62,15 @@ if [[ ${$(hostname)%%.*} == "jbigalet-arch" ]] then
       install_powerline_precmd
   fi
 fi
+
+
+function unfk_unzip() {
+    mkdir ${1%".zip"} && unzip -Z1 $1 | xargs -d'\n' mv -t ${1%".zip"}
+}
+
+function unfk_unrar() {
+    mkdir ${1%".rar"} && unrar lb $1 | xargs -d'\n' mv -t ${1%".rar"}
+}
 
 
 alias gr="grep -nr"

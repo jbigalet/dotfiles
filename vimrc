@@ -76,6 +76,11 @@ Plug 'tikhomirov/vim-glsl'
 
 Plug 'stephpy/vim-yaml'
 
+" Plug 'bkad/CamelCaseMotion'
+
+Plug 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -303,7 +308,8 @@ nnoremap <Right> <C-w><S-l>
 
 " j <=> <A-j>, in 7 bit mode terminal. Reminder: to print j, press <C-v> <A-j>
 autocmd FileType julia nnoremap <buffer> j :!julia %<CR>
-autocmd FileType python nnoremap <buffer> j :!python2.7 %<CR>
+autocmd FileType python nnoremap <buffer> j :!python2 %<CR>
+autocmd FileType cpp nnoremap <buffer> j :make! run<CR>
 autocmd FileType asm nnoremap <buffer> j :!./run<CR>
 autocmd FileType tex nnoremap <buffer> j :make! run<CR>
 
@@ -456,6 +462,11 @@ nnoremap gV `[v`] " highlight last inserted text
 nnoremap <leader>u :GundoToggle<CR>
 
 autocmd FileType vim set foldmethod=marker | set foldlevel=0
+autocmd FileType cpp set foldmethod=syntax | set foldlevel=0 | set foldnestmax=1
+
+" disable autofolding while in insert mode
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
 nnoremap ZA zA
 
