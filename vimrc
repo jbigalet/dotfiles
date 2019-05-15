@@ -68,6 +68,7 @@ Plug 'beyondmarc/hlsl.vim'
 " Plug 'LucHermitte/lh-vim-lib'
 " Plug 'LucHermitte/VimFold4C'
 
+Plug 'mustache/vim-mustache-handlebars'
 
 Plug 'itspriddle/ZoomWin'
 
@@ -195,6 +196,7 @@ autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 
 "ctrlp: ignore files matched by .gitignore if any
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_custom_ignore = 'Levels'
 
 nnoremap <Leader>P :let ctrlp_user_command = []<CR>:CtrlPClearCache<CR>:CtrlP<CR>:let ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']<CR>:CtrlPClearCache<CR>
 nnoremap <Leader>p :CtrlPBuffer<CR>
@@ -219,6 +221,8 @@ nnoremap <Leader>o :A<CR>
 nnoremap <Leader>O :AV<CR>
 
 map <Leader>s :w <Enter>
+
+let g:gitgutter_diff_args = '-w'  " git-gutter: ignore whitespaces
 
 function! AddTableHeader()
   exec ":t.|s/[^|]/-/g|s/-|-/ | /g"
@@ -247,6 +251,7 @@ function! ExecuteThisOrThatIfNoBuffer(this, that)
   endif
 endfunction
 
+nnoremap <C-b> <C-x>
 nnoremap <C-x> :call ExecuteThisOrThatIfNoBuffer('bd', 'q')<CR>
 nnoremap x :bp\|bd #<CR>
 nnoremap <Leader>x <C-w>q
@@ -452,6 +457,9 @@ nnoremap <leader>q  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v
 vnoremap <  <gv
 vnoremap >  >gv
 
+nnoremap ! s-><Esc>
+nnoremap § "_c2l.<Esc>
+
 autocmd WinEnter    * set cursorline
 autocmd WinLeave    * set nocursorline
 autocmd InsertEnter * set nocursorline
@@ -507,7 +515,7 @@ let g:EasyClipUseCutDefaults = 0
 nmap h <Plug>MoveMotionPlug
 xmap h <Plug>MoveMotionXPlug
 nmap hh <Plug>MoveMotionLinePlug
-nmap H <Plug>MoveMotionEndOfLinePlug
+" nmap H <Plug>MoveMotionEndOfLinePlug
 
 
 let g:EasyClipUsePasteToggleDefaults = 0

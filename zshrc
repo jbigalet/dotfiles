@@ -1,4 +1,5 @@
 zstyle ':completion:*' completer _complete _ignored
+zstyle ':completion:*' file-sort date
 zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
@@ -129,6 +130,10 @@ alias gyra="git rebase --abort"
 alias gyrm="git rebase master"
 alias grs="git config --get remote.origin.url"
 alias ge="git reflog"
+alias -g nostf="-- . ':!Levels/*'"
+
+export DOTNET_ROOT=$HOME/dotnet
+export PATH=$PATH:$HOME/dotnet
 
 # alias ping="/usr/local/share/./ping"
 
@@ -138,8 +143,14 @@ alias hour="sudo ntpd -qg"
 
 alias lock="i3lock -c 000000 -n"
 
+alias snap="~/.this/bin/./snap"
+
+s() {
+    local d=$(date '+%Y-%m-%d__%H-%M-%S')
+    xwd -name ":-)" | convert xwd: ~/shots/${d}.png
+}
+
 autoload -U colors && colors
-PS1="%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m %{$fg_bold[yellow]%}%~ %{$reset_color%}%% "
 
 alias tat="tmux attach -t"
 
@@ -182,5 +193,10 @@ function agi() {
 }
 
 alias update_pacman_mirrors="sudo reflector --verbose -l 100 -p http --sort rate --save /etc/pacman.d/mirrorlist"
+
+source ~/.bin/zsh-git-prompt/zshrc.sh
+GIT_PROMPT_EXECUTABLE="haskell"
+PROMPT='%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m %{$fg_bold[yellow]%}%~ %{$reset_color%}%% '
+RPROMPT='$(git_super_status)'
 
 source ~/.bin/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
