@@ -195,15 +195,18 @@ autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 
 "ctrlp: ignore files matched by .gitignore if any
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_custom_ignore = 'Levels'
+if executable('ag')
+    let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+else
+    let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+    let g:ctrlp_custom_ignore = 'Levels'
+endif
+
 
 nnoremap <Leader>P :let ctrlp_user_command = []<CR>:CtrlPClearCache<CR>:CtrlP<CR>:let ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']<CR>:CtrlPClearCache<CR>
 nnoremap <Leader>p :CtrlPBuffer<CR>
 
 let g:ctrlp_reuse_window = 'startify'
-
-nnoremap <Leader>p :CtrlPBuffer<CR>
 
 let g:peekaboo_window = 'vertical topleft 30new'
 
@@ -482,6 +485,7 @@ autocmd FileType rst nnoremap <buffer> HH :t.\|s/./`/g<CR>
 autocmd FileType rst nnoremap <buffer> H- :t.\|s/./-/g<CR>
 autocmd FileType rst nnoremap <buffer> H= :t.\|s/./=/g<CR>
 
+let g:ctrlsf_default_root = 'project'
 nmap <C-F> <Plug>CtrlSFPrompt
 nmap <C-F>w <Plug>CtrlSFCwordExec
 nmap <C-F>/ <Plug>CtrlSFPwordExec

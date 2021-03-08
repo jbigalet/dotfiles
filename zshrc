@@ -45,24 +45,24 @@ alias tarc="tar -zcvf"
 
 # . ~/.bin/packages/z/z.sh
 
-if [[ ${$(hostname)%%.*} == "jbigalet-arch" ]] then
-  function powerline_precmd() {
-    PS1="$(python2.7 ~/Documents/powerline-shell/powerline-shell.py $? --shell zsh 2> /dev/null)"
-  }
+# if [[ ${$(hostname)%%.*} == "jbigalet-arch" ]] then
+#   function powerline_precmd() {
+#     PS1="$(python2.7 ~/Documents/powerline-shell/powerline-shell.py $? --shell zsh 2> /dev/null)"
+#   }
 
-  function install_powerline_precmd() {
-    for s in "${precmd_functions[@]}"; do
-      if [ "$s" = "powerline_precmd" ]; then
-        return
-      fi
-    done
-    precmd_functions+=(powerline_precmd)
-  }
+#   function install_powerline_precmd() {
+#     for s in "${precmd_functions[@]}"; do
+#       if [ "$s" = "powerline_precmd" ]; then
+#         return
+#       fi
+#     done
+#     precmd_functions+=(powerline_precmd)
+#   }
 
-  if [ "$TERM" != "linux" ]; then
-      install_powerline_precmd
-  fi
-fi
+#   if [ "$TERM" != "linux" ]; then
+#       install_powerline_precmd
+#   fi
+# fi
 
 
 function unfk_unzip() {
@@ -77,13 +77,15 @@ function unfk_unrar() {
 alias gr="grep -nr"
 
 
-# Use `hub` as our git wrapper:
-#   http://defunkt.github.com/hub/
-hub_path=$(which hub)
-if (( $+commands[hub] ))
-then
-  alias git=$hub_path
-fi
+# function git() {
+#     if pwd | grep /mnt/c > /dev/null; then
+#         exec /mnt/c/Program\ Files/Git/cmd/git.exe "$@"
+#     else
+#         exec /usr/bin/git "$@"
+#     fi
+# }
+alias git="/mnt/c/Program\ Files/Git/cmd/git.exe"
+
 
 alias g="git clone"
 alias gs="git status -sb"
@@ -100,10 +102,10 @@ alias gdl="git diff HEAD~1"
 alias gdlc="git diff HEAD~1 HEAD"
 alias gdc="git diff --cached"
 alias gdp="git diff @{1}.."
-alias gp="git push origin master"
+alias gp="git push"
 alias gpo="git push origin"
 alias gpc='git push origin "$(git rev-parse --abbrev-ref HEAD)"'
-alias gg="git pull --rebase origin master"
+alias gg="git pull --rebase"
 alias ggo="git pull --rebase origin"
 alias ggc='git pull --rebase origin "$(git rev-parse --abbrev-ref HEAD)"'
 alias gb="git branch -vv"
@@ -194,9 +196,9 @@ function agi() {
 
 alias update_pacman_mirrors="sudo reflector --verbose -l 100 -p http --sort rate --save /etc/pacman.d/mirrorlist"
 
-source ~/.bin/zsh-git-prompt/zshrc.sh
-GIT_PROMPT_EXECUTABLE="haskell"
-PROMPT='%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m %{$fg_bold[yellow]%}%~ %{$reset_color%}%% '
-RPROMPT='$(git_super_status)'
+# source ~/.bin/zsh-git-prompt/zshrc.sh
+# GIT_PROMPT_EXECUTABLE="haskell"
+PS1="%{$fg_bold[red]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m %{$fg_bold[yellow]%}%~ %{$reset_color%}%% "
+# RPROMPT='$(git_super_status)'
 
-source ~/.bin/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/.bin/packages/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
