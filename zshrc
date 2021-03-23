@@ -76,15 +76,8 @@ function unfk_unrar() {
 
 alias gr="grep -nr"
 
-
-# function git() {
-#     if pwd | grep /mnt/c > /dev/null; then
-#         exec /mnt/c/Program\ Files/Git/cmd/git.exe "$@"
-#     else
-#         exec /usr/bin/git "$@"
-#     fi
-# }
-alias git="/mnt/c/Program\ Files/Git/cmd/git.exe"
+# use git-windows via LFW on ntfs repos
+export PATH=$HOME/.fakegit:$PATH
 
 
 alias g="git clone"

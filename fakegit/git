@@ -1,1 +1,6 @@
-/mnt/c/Program Files/Git/bin/git.exe
+#!/bin/bash
+if pwd | grep /mnt/c > /dev/null; then
+    exec /mnt/c/Program\ Files/Git/cmd/git.exe "$@"
+else
+    exec /usr/bin/git "$@"
+fi
