@@ -32,7 +32,7 @@ Plug 'mhinz/vim-startify'
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
 " Plug 'scrooloose/nerdtree'
 " Plug 'jwalton512/vim-blade', { 'for': 'blade' }
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'sjl/gundo.vim'
 Plug 'dyng/ctrlsf.vim'
@@ -49,6 +49,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-abolish'
 Plug 'svermeulen/vim-easyclip'
+Plug 'kana/vim-fakeclip'
 " Plug 'justinmk/vim-gtfo'
 Plug 'kopischke/vim-fetch'
 Plug 'chrisbra/Colorizer', { 'on': ['ColorHighlight'] }
@@ -69,8 +70,6 @@ Plug 'beyondmarc/hlsl.vim'
 " Plug 'LucHermitte/VimFold4C'
 
 Plug 'mustache/vim-mustache-handlebars'
-
-Plug 'itspriddle/ZoomWin'
 
 " Plug 'beyondmarc/glsl.vim'
 Plug 'tikhomirov/vim-glsl'
@@ -203,7 +202,7 @@ else
 endif
 
 
-nnoremap <Leader>P :let ctrlp_user_command = []<CR>:CtrlPClearCache<CR>:CtrlP<CR>:let ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']<CR>:CtrlPClearCache<CR>
+nnoremap <Leader>P :let ctrlp_user_cmd_bck = ctrlp_user_command<CR>:let ctrlp_user_command = []<CR>:CtrlPClearCache<CR>:CtrlP<CR>:let ctrlp_user_command = ctrlp_user_cmd_bck<CR>:CtrlPClearCache<CR>
 nnoremap <Leader>p :CtrlPBuffer<CR>
 
 let g:ctrlp_reuse_window = 'startify'
@@ -273,15 +272,11 @@ let g:airline#extensions#tabline#show_tabs = 1
 
 ca w!! w !sudo tee % >/dev/null
 
-map <tab> :bn<CR>
-map <S-tab> :bp<CR>
+map <tab> :tabnext<CR>
+map <S-tab> :tabprevious<CR>
+nnoremap <C-w>o :tab split<CR>
 
 set nopaste
-
-highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
-highlight multiple_cursors_visual term=reverse cterm=reverse gui=reverse
-let g:multi_cursor_exit_from_visual_mode=0
-let g:multi_cursor_exit_from_insert_mode=0
 
 nnoremap S :Commentary<CR>
 vnoremap s :Commentary<CR>
@@ -510,7 +505,7 @@ autocmd FileType c,cpp nnoremap <buffer> l zk
 
 " Easy clip
 let g:EasyClipAlwaysMoveCursorToEndOfPaste = 1
-let g:EasyClipAutoFormat = 1
+let g:EasyClipAutoFormat = 0
 
 nmap <leader>a <plug>EasyClipToggleFormattedPaste
 
@@ -573,3 +568,10 @@ let g:SignatureMap = {
       \ 'ListBufferMarks'    :  "gm/",
       \ 'ListBufferMarkers'  :  "gm?"
       \ }
+
+
+let g:VM_custom_motions  = {'j': 'h', 'k': 'j', 'l': 'k', 'm': 'l'}
+let g:VM_custom_remaps = {'<c-p>': 'N', '<c-x>': 'q'}
+let g:VM_maps = {}
+let g:VM_maps["Find Operator"] = ''
+let g:VM_theme = 'codedark'
